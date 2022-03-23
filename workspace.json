@@ -1,0 +1,32 @@
+{
+    /**
+     *  An array of the paths to all the applications present in this workspace
+     */
+    "apps": [
+        "su/examples/pulse",
+        "su/examples/search",
+        "su/examples/materialicons",
+        "su/examples/wsecho"
+    ],
+
+    "frameworks": {        "ext": {
+            "path":"ext",
+            "version":"6.5.2.463"
+        }
+        
+        
+    	
+
+    },
+    
+    "build": {
+        "dir": "${workspace.dir}/build"
+    },
+
+    "packages": {
+        "dir": "${workspace.dir}/su/packages",
+        "extract": "${workspace.dir}/remote"
+    }
+    
+    
+}

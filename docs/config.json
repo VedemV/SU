@@ -1,0 +1,22 @@
+{
+    "--": [
+        "../packages/su/src",
+        "../packages/su/modern/src",
+        "../packages/su-native/src"
+    ],
+    "--import": [
+        //"ExtJs 6.5.2:export/Sencha 6.5.2",
+        "1.0.0.0"
+    ],
+    "--title": "E-Chartering platform",
+    "--builtin-classes": true,
+    "--tests": true,
+    "--touch-examples-ui": true,
+    "--eg-iframe": "eg-iframe.html",
+    "--warnings": [
+        "-all:ext",
+        "-aside",
+        "-link"
+    ],
+    "--output": "output"
+}

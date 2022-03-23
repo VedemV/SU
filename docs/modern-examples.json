@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Examples",
+    "items": [
+      {
+        "name": "material-icons",
+        "title": "Material Icons",
+        "description": "Material Icons viewer",
+        "url": "materialicons/index.html",
+        "icon": "materialicons/feeds.gif",
+        "device": "tablet",
+        "status": "new"
+      },
+      {
+        "name": "wsecho",
+        "title": "WebSocket Echo",
+        "description": "Material Icons viewer",
+        "url": "WSEcho/index.html",
+        "icon": "WSEcho/feeds.gif",
+        "status": "new"
+      }
+    ]
+  }
+]

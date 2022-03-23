@@ -1,0 +1,168 @@
+﻿/**
+  * @class SU.widgets.Avatar
+  */
+
+/**
+ * @var {color}
+ * Avatar color
+ */
+$avatar-color: dynamic(#563071);
+
+/**
+ * @var {color}
+ * Avatar background-color
+ */
+$avatar-background-color: dynamic(#e5e4e8);
+
+/**
+ * @var {color}
+ * Avatar background-color inner element
+ */
+$avatar-background-color-inner: dynamic(transparent);
+
+/**
+ * @var {color/list}
+ * Avatar border-color
+ */
+$avatar-border-color: dynamic(darken($avatar-background-color, 10%));
+
+/**
+ * @var {number/list}
+ * Avatar border-width
+ */
+$avatar-border-width: dynamic(1px);
+
+/**
+ * @var {string/list}
+ * Avatar border-style
+ */
+$avatar-border-style: dynamic(solid);
+
+/**
+ * @var {number}
+ */
+$avatar-border-radius: dynamic(100%);
+
+/**
+ * @var {list}
+ * Avatar box-shadow
+ */
+$avatar-box-shadow: dynamic(0 0 10px 2px rgba(0,0,0,0.24));
+
+/**
+ * @var {string/number}
+ * Avatar font-weight
+ */
+$avatar-font-weight: dynamic(500);
+
+/**
+ * @var {number}
+ * Avatar font-size
+ */
+$avatar-font-size: dynamic(null);
+
+/**
+ * @var {number}
+ * Avatar line-height
+ */
+$avatar-line-height: dynamic(100%);
+
+/**
+ * @var {string}
+ * Avatar font-family
+ */
+$avatar-font-family: dynamic($font-family);
+
+/**
+ * @var {string}
+ * Avatar text-transform
+ */
+$avatar-text-transform: dynamic(null);
+
+$avatar-plain-ui: dynamic((
+    box-shadow: none,
+    border-width: 0
+));
+
+/**
+ * Creates a visual theme for a Avatar.
+ *
+ * @param {string} $ui
+ * The name of the UI being created. Can not included spaces or special punctuation
+ * (used in CSS class names).
+ *
+ * @param {String} [$xtype=avatar] (protected) The {@link Ext.Class#xtype} to use
+ * in CSS selectors.  For use by UI mixins of derived classes.
+ *
+ * @param {color} $color
+ * Avatar color
+ *
+ * @param {color} $background-color
+ * Avatar background-color
+ *
+ * @param {color/list} $border-color
+ * Avatar border-color
+ *
+ * @param {number/list} $border-width
+ * Avatar border-width
+ *
+ * @param {string/list} $border-style
+ * Avatar border-style
+ *
+ * @param {number} $border-radius
+ * Avatar border-radius
+ *
+ * @param {list} $box-shadow
+ * Avatar box-shadow
+ *
+  * @param {string/number} $font-weight
+ * Avatar font-weight
+ *
+ * @param {number} $font-size
+ * Avatar font-size
+ *
+ * @param {number} $line-height
+ * Avatar line-height
+ *
+ * @param {string} $font-family
+ * Avatar font-family
+ *
+ * @param {string} $text-transform
+ * Avatar text-transform
+ *
+ *
+*/
+@mixin avatar-ui( $ui: null, $xtype: avatar, $color: null, $background-color: null, $background-color-inner: null, $border-color: null, $border-width: null, $border-style: null, $border-radius: null, $box-shadow: null, $font-weight: null, $font-size: null, $font-size-big: null, $line-height: null, $line-height-big: null, $font-family: null, $text-transform: null ) {
+    $ui-suffix: ui-suffix($ui);
+
+    .#{$prefix}#{$xtype}#{$ui-suffix} {
+        position: relative;
+        display: flex;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        background-color: $background-color;
+        background-position: center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        @include border($border-width, $border-style, $border-color);
+
+        .#{$prefix}#{$xtype}#{$ui-suffix}-inner {
+            border-radius: $border-radius;
+            margin: auto;
+            //position: absolute;
+            //top: 0px;
+            //left: 0px;
+            //bottom: 0px;
+            //right: 0px;
+            @include font($font-weight, $font-size, $line-height, $font-family);
+            background-color: $background-color-inner;
+            color: $color;
+
+            &:before {
+                content: attr(data-content);
+                margin: auto;
+            }
+
+        }
+    }
+}

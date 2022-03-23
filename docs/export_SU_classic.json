@@ -1,0 +1,18 @@
+{
+    "--": [
+        "../su/packages/su/src",
+        "../su/packages/su/overrides",
+        "../su/packages/su/sass",
+        "../su/packages/su/classic/src",
+        "../su/packages/su/classic/overrides",
+        "../su/packages/su/classic/sass"
+    ],
+    "--warnings": [
+            "-all:ext",
+            "-aside",
+            "-link"
+    ],
+    "--export": "full",
+    "--output": "export/su-classic 1.0.1"
+
+}

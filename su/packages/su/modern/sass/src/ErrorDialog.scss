@@ -1,0 +1,43 @@
+﻿.x-error-dialog {
+    .x-error-icon {
+        margin: 5px;
+        background-repeat: no-repeat;
+        background-position: 32px center;
+        background-image: theme-background-image('errordialog-icons', 'png');
+        height: 32px;
+        width: 32px;
+
+        $i: 0;
+
+        @each $name in error, info, question, warning {
+            &.ext-mb-#{$name} {
+                background-position: -32px * $i center;
+            }
+
+            $i: $i + 1;
+        }
+    }
+
+    .x-error-message {
+        /*	background-color: #fff; */
+        /*	border: 1px solid #555; */
+        padding: 2px;
+        margin: 5px;
+        white-space: pre-wrap;
+        color: $color;
+        user-select: text;
+        font-size: 14px;
+    }
+
+    .x-error-description {
+        /*background-color: #fff;*/
+        border: 1px solid #99bbe8;
+        white-space: pre-wrap;
+        color: $color;
+        user-select: text;
+        margin-top: 5px;
+        padding: 0 5px;
+    }
+}
+
+// theme-background-image('logo-white-60x60', 'png');

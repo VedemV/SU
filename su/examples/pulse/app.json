@@ -1,0 +1,150 @@
+{
+    "name": "pulse",
+    "namespace": "Pulse",
+    "version": "1.0.1.7",
+    "framework": "ext",
+    "toolkit": "modern",
+    "theme": "theme-material",
+
+    "requires": [
+        "font-awesome",
+        "su"
+    ],
+
+    "indexHtmlPath": "index.html",
+
+    "classpath": [
+        "app"
+    ],
+
+    "overrides": [
+        "overrides"
+    ],
+
+    "fashion": {
+        "missingParameters": "error",
+        "inliner": {
+            "enable": false
+        }
+    },
+
+    "sass": {
+        "namespace": "Pulse",
+
+        "generated": {
+            "var": "sass/save.scss",
+            "src": "sass/save"
+        },
+
+        "etc": [
+            "sass/etc/all.scss"
+        ],
+
+        "var": [
+            "sass/var/all.scss",
+            "sass/var"
+        ],
+
+        "src": [
+            "sass/src"
+        ]
+    },
+
+    "js": [
+        {
+            "path": "app.js",
+            "bundle": true
+        }
+    ],
+
+    "css": [
+        {
+            "path": "${build.out.css.path}",
+            "bundle": true,
+            "exclude": ["fashion"]
+        }
+    ],
+
+     "loader": {
+         "cache": false,
+         "cacheParam": "_dc"
+     },
+
+    "production": {
+        "output": {
+            "appCache": {
+                "enable": true,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        },
+        "compressor": {
+            "type": "yui"
+        }
+    },
+
+    "testing": {
+    },
+
+    "development": {
+        "watch": {
+            "delay": 250
+        }
+    },
+
+    "bootstrap": {
+        "base": "${app.dir}",
+
+        "microloader": "bootstrap.js",
+        "css": "bootstrap.css"
+    },
+
+    "output": {
+        "base": "${workspace.dir}/examples/${app.name}",
+        "page": "index.html",
+        "appCache": {
+            "enable": false
+        },
+        "resources": {
+            "path": "resources",
+            "shared": "../resources"
+        }
+    },
+
+    "cache": {
+        "enable": false,
+        "deltas": true
+    },
+
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+
+    "resources": [
+        {
+            "path": "resources",
+            "output": "shared"
+        }
+    ],
+
+    "archivePath": "../../archive/${app.name}/${build.id}",
+
+    "slicer": null,
+
+    "ignore": [
+        "(^|/)CVS(/?$|/.*?$)"
+    ],
+
+    "id": "8f131145-dc98-447a-8ea9-416fe63a14be"
+}

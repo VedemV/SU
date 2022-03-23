@@ -1,0 +1,233 @@
+{
+    "name": "search",
+    "namespace": "Search",
+    "version": "1.0.1.7",
+    "framework": "ext",
+    "indexHtmlPath": "index.html",
+
+    "requires": [
+        "font-awesome",
+        "su"
+    ],
+
+    "classpath": [
+        "app",
+        "${toolkit.name}/src"
+    ],
+
+    "overrides": [
+        "overrides",
+        "${toolkit.name}/overrides"
+    ],
+
+    "fashion": {
+        "missingParameters": "error",
+        "inliner": {
+            "enable": false
+        }
+    },
+
+    "sass": {
+        "namespace": "Search",
+        "etc": [
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/etc/all.scss"
+        ],
+        "var": [
+            "sass/var/all.scss",
+            "sass/var",
+            "${toolkit.name}/sass/var/all.scss",
+            "${toolkit.name}/sass/var"
+        ],
+        "src": [
+            "sass/src",
+            "${toolkit.name}/sass/src"
+        ]
+    },
+
+    /**
+     * List of all JavaScript assets in the right execution order.
+     *
+     * Each item is an object with the following format:
+     *
+     *      {
+     *          // Path to file. If the file is local this must be a relative path from
+     *          // this app.json file.
+     *          //
+     *          "path": "path/to/script.js",   // REQUIRED
+     *
+     *          // Set to true on one file to indicate that it should become the container
+     *          // for the concatenated classes.
+     *          //
+     *          "bundle": false,    // OPTIONAL
+     *
+     *          // Set to true to include this file in the concatenated classes.
+     *          //
+     *          "includeInBundle": false,  // OPTIONAL
+     *
+     *          // Specify as true if this file is remote and should not be copied into the
+     *          // build folder. Defaults to false for a local file which will be copied.
+     *          //
+     *          "remote": false,    // OPTIONAL
+     *
+     *          // If not specified, this file will only be loaded once, and cached inside
+     *          // localStorage until this value is changed. You can specify:
+     *          //
+     *          //   - "delta" to enable over-the-air delta update for this file
+     *          //   - "full" means full update will be made when this file changes
+     *          //
+     *          "update": "",        // OPTIONAL
+     *
+     *          // A value of true indicates that is a development mode only dependency.
+     *          // These files will not be copied into the build directory or referenced
+     *          // in the generate app.json manifest for the micro loader.
+     *          //
+     *          "bootstrap": false   // OPTIONAL
+     *      }
+     *
+     */
+    "js": [
+        {
+            "path": "app.js",
+            "bundle": true
+        }
+    ],
+
+    "classic": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            //{
+            //    "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+            //}
+        ]
+    },
+
+    "modern": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            //{
+            //    "path": "${framework.dir}/build/ext-modern-all-debug.js"
+            //}
+        ]
+    },
+
+    "css": [
+        {
+            "path": "${build.out.css.path}",
+            "bundle": true,
+            "exclude": ["fashion"]
+        }
+    ],
+
+     "loader": {
+         "cache": false,
+         "cacheParam": "_dc"
+     },
+
+    "production": {
+        "output": {
+            "appCache": {
+                "enable": true,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        },
+        "compressor": {
+            "type": "yui"
+        }
+    },
+
+    "testing": {
+    },
+
+    "development": {
+        "watch": {
+            "delay": 250
+        }
+    },
+
+    "bootstrap": {
+        "base": "${app.dir}",
+        "manifest": "${build.id}.json",
+        "microloader": "bootstrap.js",
+        "css": "bootstrap.css"
+    },
+
+    "output": {
+        "base": "${workspace.dir}/examples/${app.name}",
+        "page": "index.html",
+        "manifest": "${build.id}.json",
+        "js": "${build.id}/app.js",
+        "appCache": {
+            "enable": false
+        },
+        "resources": {
+            "path": "${build.id}/resources",
+            "shared": "resources"
+        }
+    },
+
+    "cache": {
+        "enable": false,
+        "deltas": "${build.id}/deltas"
+    },
+
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+
+    "resources": [
+        {
+            "path": "resources",
+            "output": "shared"
+        },
+        {
+            "path": "${toolkit.name}/resources"
+        },
+        {
+            "path": "${build.id}/resources"
+        }
+    ],
+
+    "archivePath": "archive/${build.id}",
+    "builds": {
+        "classic": {
+            "toolkit": "classic",
+            "theme": "theme-triton",
+            "sass": {
+                "generated": {
+                    "var": "classic/sass/save.scss",
+                    "src": "classic/sass/save"
+                }
+            }
+        },
+
+        "modern": {
+            "toolkit": "modern",
+            "theme": "theme-material",
+            "sass": {
+                "generated": {
+                    "var": "modern/sass/save.scss",
+                    "src": "modern/sass/save"
+                }
+            }
+        }
+    },
+
+    "ignore": [
+        "(^|/)CVS(/?$|/.*?$)"
+    ],
+
+    "id": "16a24763-ec12-4052-b4df-d5290079fa9a"
+}

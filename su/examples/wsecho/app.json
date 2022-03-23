@@ -1,0 +1,214 @@
+{
+    "name": "WSEcho",
+    "namespace": "WSEcho",
+    "version": "1.0.1.7",
+    "framework": "ext",
+    "toolkit": "classic",
+    "theme": "theme-triton",
+    "indexHtmlPath": "index.html",
+
+    "requires": [
+        "font-awesome",
+        "su"
+    ],
+    
+    "subpkgs": {
+        "dir": "${app.dir}/packages",
+        "packages": [
+            "locale"
+        ]
+    },
+
+    "classpath": [
+        "app"
+    ],
+
+    "overrides": [
+        "overrides"
+    ],
+
+    "fashion": {
+        "missingParameters": "error",
+        "inliner": {
+            /**
+             * Disable resource inliner. Production builds enable this by default.
+             */
+            "enable": false
+        }
+    },
+
+    "sass": {
+        "namespace": "WSEcho",
+        "generated": {
+            "var": "sass/save.scss",
+            "src": "sass/save"
+        },
+        "etc": [
+            "sass/etc/all.scss"
+        ],
+        "var": [
+            "sass/var/all.scss",
+            "sass/var"
+        ],
+        "src": [
+            "sass/src"
+        ]
+    },
+
+    "js": [
+        {
+            "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+        },
+        {
+            "path": "app.js",
+            "bundle": true
+        }
+    ],
+
+    "css": [
+        {
+            "path": "${build.out.css.path}",
+            "bundle": true,
+            "exclude": ["fashion"]
+        }
+    ],
+
+     "loader": {
+         "cache": false,
+         "cacheParam": "_dc"
+     },
+
+    "production": {
+        "output": {
+            "appCache": {
+                "enable": false,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        },
+        "compressor": {
+            "type": "yui"
+        }
+    },
+
+    "testing": {
+    },
+
+    "development": {
+        "watch": {
+            "delay": 250
+        }
+    },
+
+    "bootstrap": {
+        "base": "${app.dir}",
+
+        "microloader": "bootstrap.js",
+        "css": "bootstrap.css"
+    },
+
+    /**
+     * Controls the output directory for build resources.  May be set with
+     * either a string:
+     *
+     *      "${workspace.build.dir}/${build.environment}/${app.name}"
+     *
+     * or an object containing values for various types of build artifacts:
+     *
+     *      {
+     *          "base": "${workspace.build.dir}/${build.environment}/${app.name}",
+     *          "page": {
+     *              "path": "../index.html",
+     *              "enable": false
+     *          },
+     *          "css": "${app.output.resources}/${app.name}-all.css",
+     *          "js": {
+     *              "path": "app.js",
+     *              // This setting constrols the output language level.  Set to 'ES6' to 
+     *              // disable the transpiler
+     *              "version": "ES5"
+     *          },
+     *          "microloader": {
+     *              "path": "microloader.js",
+     *              "embed": true,
+     *              "enable": true
+     *          },
+     *          "manifest": {
+     *              "path": "app.json",
+     *              "embed": false,
+     *              "enable": "${app.output.microloader.enable}"
+     *          },
+     *          "resources": "resources",
+     *          "slicer": {
+     *              "path": "${app.output.resources}/images",
+     *              "enable": false
+     *          },
+     *          // Setting the "enable" property of this object to a Truthy value will cause a Application Cache
+     *          // manifest file to be generated based on this files appCache object. This file will then be injected
+     *          // into the index.html file of the built application
+     *          "appCache":{
+     *              "enable": false"
+     *          }
+     *      }
+     *
+     */
+
+    "output": {
+        "base": "${workspace.dir}/examples/${app.name}",
+        "appCache": {
+            "enable": false
+        }
+    },
+
+    "cache": {
+        "enable": false,
+        "deltas": true
+    },
+
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+
+    "resources": [
+        {
+            "path": "resources",
+            "output": "shared"
+        }
+    ],
+
+    "archivePath": "archive",
+
+    "slicer": {
+        "js": [
+            {
+                "path": "sass/example/custom.js",
+                "isWidgetManifest": true
+            }
+        ],
+        "output": {
+            "appCache": {
+                "enable": false
+            }
+        },
+        "cache": {
+            "enable": false
+        }
+    },
+
+    "ignore": [
+        "(^|/)CVS(/?$|/.*?$)"
+    ],
+
+    "id": "973084f8-aa34-4917-9003-a8dc359f0b8f"
+}

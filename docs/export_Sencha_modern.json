@@ -1,0 +1,34 @@
+{
+    "--": [
+        "../ext/packages/core/src",
+        "../ext/packages/core/overrides",
+        "../ext/packages/core/sass",
+        "../ext/modern/modern/src",
+        "../ext/modern/modern/overrides",
+        "../ext/modern/treegrid/src",
+        "../ext/modern/theme-base/sass",
+        "../ext/packages/ux/src",
+        "../ext/packages/ux/sass",
+        "../ext/packages/ux/modern/sass",
+        "../ext/packages/charts/src",
+        "../ext/packages/charts/sass",
+        "../ext/packages/charts/modern/src",
+        "../ext/packages/charts/modern/overrides",
+        "../ext/packages/charts/modern/sass",
+        "../ext/packages/google/src",
+        "../ext/packages/google/sass",
+        "../ext/packages/google/modern/src",
+        "../ext/packages/google/modern/sass",
+        "../ext/packages/soap/src"
+    ],
+    "--builtin-classes": true,
+    "--tests": true,
+    "--warnings": [
+            "-all:ext",
+            "-aside",
+            "-link"
+    ],
+    "--export": "full",
+    "--output": "export/sencha-modern 6.5.2"
+
+}

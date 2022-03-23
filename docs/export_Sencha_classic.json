@@ -1,0 +1,34 @@
+{
+    "--": [
+        "../ext/packages/core/src",
+        "../ext/packages/core/overrides",
+        "../ext/packages/core/sass",
+        "../ext/classic/classic/src",
+        "../ext/classic/classic/overrides",
+        "../ext/classic/ux/sass",
+        "../ext/classic/theme-base/sass",
+        "../ext/packages/ux/src",
+        "../ext/packages/ux/sass",
+        "../ext/packages/ux/classic/sass",
+        "../ext/packages/charts/src",
+        "../ext/packages/charts/sass",
+        "../ext/packages/charts/classic/src",
+        "../ext/packages/charts/classic/overrides",
+        "../ext/packages/charts/classic/sass",
+        "../ext/packages/google/src",
+        "../ext/packages/google/sass",
+        "../ext/packages/google/classic/src",
+        "../ext/packages/google/classic/sass",
+        "../ext/packages/soap/src"
+    ],
+    "--builtin-classes": true,
+    "--tests": true,
+    "--warnings": [
+            "-all:ext",
+            "-aside",
+            "-link"
+    ],
+    "--export": "full",
+    "--output": "export/sencha-classic 6.5.2"
+
+}

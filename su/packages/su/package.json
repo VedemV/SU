@@ -1,0 +1,72 @@
+{
+    "name": "su",
+    "namespace": "SU",
+    "format": "1",
+    "version": "1.0.1.7",
+    "compatVersion": "1.0.1",
+    "creator": "skillunion",
+    "summary": "SU Core",
+    "detailedDescription": "Skill Union Core Library",
+    "type": "code",
+    "signatures": [
+        {
+            "name": "skillunion",
+            "uuid": "16a844e0-a0da-482d-903f-13247471c53c",
+            "created": "2019-06-17T12:42:03Z",
+            "algorithm": "SHA1withRSA",
+            "nonce": "QZNdxa8BL1U=",
+            "signature": "OCLlGDgTspuefU3lWCCemMY/Wzr7+vO8reReNKlNHMpfAiLOk1hfR9gRPHNr58maPOoI29MnlTHloaDHjphW37yPYU2zIql9YkksFIulCxsBdKgaUuVsv/P4KbwExVkfvev+Um2xYlLYiLUgPhu65IwPqqxrvQmuOo9gPssS6RRgvOa4kuTic6ZqIjvpHJUDj0UjWRxTyWC4OXM2ekaJaRT3wDIO6zhL8Q6b3DCnithl/duJWgTrGGwtg9l8waJOQuv6B+N8qwdmvpVPqHJSNYTpAYEzzHioMDnnRD7Y6kBUt/8Z5i4HtJ3XwFuPXk+6lSSjkiMjAt1Fx0TQQNhLiw=="
+        }
+    ],
+    "builds": {
+        "su-classic": {
+            "toolkit": "classic",
+            "theme": "theme-classic",
+            "name": "su-classic"
+        },
+        "su-modern": {
+            "toolkit": "modern",
+            "theme": "theme-material",
+            "name": "su-modern"
+        }
+    },
+    "framework": "ext",
+    "output": "${workspace.packages.dir}/build",
+    "sass": {
+        "namespace": "SU",
+        "etc": [
+            "${package.dir}/sass/etc/all.scss",
+            "${package.dir}/${toolkit.name}/sass/etc/all.scss"
+        ],
+        "var": [
+            "${package.dir}/sass/var",
+            "${package.dir}/${toolkit.name}/sass/var"
+        ],
+        "src": [
+            "${package.dir}/sass/src",
+            "${package.dir}/${toolkit.name}/sass/src"
+        ]
+    },
+    "classpath": [
+        "${package.dir}/src",
+        "${package.dir}/${toolkit.name}/src"
+    ],
+    "overrides": [
+        "${package.dir}/overrides",
+        "${package.dir}/${toolkit.name}/overrides"
+    ],
+    "resource": {
+        "paths": [
+            "${package.dir}/resources",
+            "${package.dir}/${toolkit.name}/resources"
+        ]
+    },
+    "properties": {
+        "skip.js": 0,
+        "skip.sass": 0,
+        "skip.slice": 1,
+        "skip.examles": 1,
+        "pkg.build.dir": "${workspace.build.dir}/pkgs",
+        "pkg.file.name": "su.pkg"
+    }
+}

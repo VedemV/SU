@@ -1,0 +1,58 @@
+{
+    "--": [
+        "../ext/packages/core/src",
+        "../ext/packages/core/overrides",
+        "../ext/packages/core/sass",
+        "../ext/modern/modern/src",
+        "../ext/modern/modern/overrides",
+        "../ext/modern/treegrid/src",
+        "../ext/modern/theme-base/sass",
+        "../ext/packages/ux/src",
+        "../ext/packages/charts/src",
+        "../ext/packages/charts/modern/src",
+        "../ext/packages/charts/modern/overrides",
+        "../ext/packages/google/src",
+        "../ext/packages/google/modern/src",
+        "../ext/packages/soap/src",
+        "../su/packages/su/src",
+        "../su/packages/su/sass",
+        "../su/packages/su/modern/src",
+        "../su/packages/su/modern/overrides",
+        "../su/packages/su/modern/sass",
+        "../su/packages/su-native/src",
+        "../su/packages/su-native/sass",
+        "../su/packages/su-native/overrides"
+    ], 
+    "--exclude": [
+        "../ext/packages/ux/sass",
+        "../ext/packages/ux/modern/sass",
+        "../ext/packages/charts/sass/examples",
+        "../ext/packages/charts/modern/sass",
+        "../ext/packages/google/sass/examples",
+        "../ext/packages/google/modern/sass"
+    ],
+    
+    "--import": [
+        "ExtJs 6.5.2:export/sencha-modern 6.5.2",
+        "SU 1.0.0:export/su-modern 1.0.0",
+        "1.0.1"
+    ],
+    "--title": "Skill Union Library - modern",
+    "--welcome": "../su/release-notes.html",
+    "--builtin-classes": true,
+    "--tests": true,
+    "--touch-examples-ui": true,
+    "--eg-iframe": "eg-iframe-modern.html",
+    "--examples-base-url": "../examples/",
+    "--examples": "modern-examples.json",
+    "--warnings": [
+        "-all:ext",
+        "-aside",
+        "-link"
+    ],
+    "--guides": "guides.json",
+    "--guides-toc-level": 3,
+    "--body-html": [
+        "<script src='../../menu.js' type='text/javascript'>"
+    ]
+}

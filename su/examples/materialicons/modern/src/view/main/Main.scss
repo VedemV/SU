@@ -1,0 +1,45 @@
+﻿
+.x-toolbar-footer {
+    .x-input-el {
+        font-size: 16px !important;
+        color: #111111 !important;
+    }
+
+    .x-label-el {
+        font-size: 14px !important;
+        margin-top: 6px;
+    }
+}
+
+.x-dataview .x-body-el {
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.x-item {
+    padding: 3px;
+    width: 300px;
+    display: block;
+    border: 1px solid #bbdefb;
+    margin: 3px;
+    background-color: #ffffff;
+    min-height: 52px;
+
+    .x-selected & {
+        background-color: #bbdefb;
+    }
+
+    .x-icon {
+        float: left;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    strong {
+        color: #777777;
+        font-weight: 600;
+        font-size: 14px;
+    }
+}

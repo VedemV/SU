@@ -1,0 +1,50 @@
+{
+    "--": [
+        "../ext/packages/core/src",
+        "../ext/packages/core/overrides",
+        "../ext/packages/core/sass",
+        "../ext/classic/classic/src",
+        "../ext/classic/classic/overrides",
+        "../ext/classic/ux/sass",
+        "../ext/classic/theme-base/sass",
+        "../ext/packages/ux/src",
+        "../ext/packages/ux/sass",
+        "../ext/packages/ux/classic/sass",
+        "../ext/packages/charts/src",
+        "../ext/packages/charts/sass",
+        "../ext/packages/charts/classic/src",
+        "../ext/packages/charts/classic/overrides",
+        "../ext/packages/charts/classic/sass",
+        "../ext/packages/google/src",
+        "../ext/packages/google/sass",
+        "../ext/packages/google/classic/sass",
+        "../ext/packages/soap/src",
+        "../su/packages/su/src",
+        "../su/packages/su/sass",
+        "../su/packages/su/classic/src",
+        "../su/packages/su/classic/sass",
+        "../su/packages/su/classic/overrides"
+    ],
+    "--import": [
+        "ExtJs 6.5.2:export/sencha-classic 6.5.2",
+        "SU 1.0.0:export/su-classic 1.0.0",
+        "1.0.1"
+    ],
+    "--title": "Skill Union Library - classic",
+    "--welcome": "../su/release-notes.html",
+    "--builtin-classes": true,
+    "--tests": true,
+    "--eg-iframe": "eg-iframe-classic.html",
+    "--examples-base-url": "../examples/",
+    "--examples": "classic-examples.json",
+    "--warnings": [
+        "-all:ext",
+        "-aside",
+        "-link"
+    ],
+    "--guides": "guides.json",
+    "--guides-toc-level": 3,
+    "--body-html": [
+        "<script src='../../menu.js' type='text/javascript'>"
+    ]
+}

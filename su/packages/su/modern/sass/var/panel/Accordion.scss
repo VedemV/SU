@@ -1,0 +1,19 @@
+﻿/**
+ * @class SU.panel.Accordion
+ */
+
+
+/**
+ * @var {map}
+ * Parameters for the "accordion" panel UI.
+ * Set to `null` to eliminate the UI from the CSS output. 
+ */
+$panel-accordion-ui: dynamic((
+    header-background-color: $neutral-light-color,
+    header-border-width: 0,
+    panel-header-padding: 4px 5px,
+    body-padding: 10px,
+    header-color: #111,
+    tool-color: #9e9e9e,
+    body-border-width: 0
+));

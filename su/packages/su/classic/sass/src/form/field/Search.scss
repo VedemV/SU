@@ -1,0 +1,31 @@
+/**
+ * @class SU.form.field.Search
+
+ */
+
+.#{$prefix}form-type-search {
+    & .#{$prefix}form-trigger-wrap {
+        @include ext-box();
+        @include ext-box-align(stretch);
+        @include ext-box-orient(horizontal);
+        @include ext-box-pack(start);
+    
+        & .#{$prefix}form-text-wrap {
+            display: block;
+            @include ext-box-flex();
+            
+            //& input {
+            //    @include padding(5px 0px 4px);
+            //}
+        }
+    
+        & .#{$prefix}form-trigger {
+            display: block;
+        }
+        
+        & .#{$prefix}form-search-trigger {
+            order: -1;
+        }
+    }    
+}
+

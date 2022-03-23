@@ -1,0 +1,29 @@
+﻿.x-tagfield {
+    & .x-before-input-el, & .x-after-input-el {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    & .x-tag {
+        display: flex;
+        padding: 4px;
+        margin: 4px;
+        cursor: default;
+        background-color: $base-pressed-color;
+        color: $base-foreground-color;
+        @include border-radius(3px);
+        @include box-shadow(1px 1px 1px $base-dark-color);
+
+        & .x-tag-tool {
+            margin-left: 2px;
+            color: $base-foreground-color;
+            cursor: pointer;
+        }
+    }
+
+    &.x-disabled, &.x-field-readonly {
+        .x-tag .x-tag-tool {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "name": "su-native",
+    "framework": "ext",
+    "toolkit": "modern",
+    "namespace": "SU",
+    "type": "code",
+    "creator": "skillunion",
+    "summary": "Package for mobile applications",
+    "detailedDescription": "Sencha Cmd package for mobile applications",
+    "version": "1.0.1.7",
+    "compatVersion": "1.0.1",
+    "format": "1",
+    "slicer": null,
+    "output": "${workspace.packages.dir}/build",
+    "local": true,
+    "sass": {
+        "namespace": "SU",
+        "etc": [
+            "${package.dir}/sass/etc/all.scss"
+        ],
+        "var": [
+            "${package.dir}/sass/var"
+        ],
+        "src": [
+            "${package.dir}/sass/src"
+        ]
+    },
+    "classpath": [
+        "${package.dir}/src"
+    ],
+    "overrides": [
+        "${package.dir}/overrides"
+    ],
+    "example": {
+        "path": [
+            "${package.dir}/examples"
+        ]
+    },
+    "requires": [
+        "su"
+    ],
+    "subpkgs": null,
+    "properties": {
+        "skip.js": 0,
+        "skip.sass": 1,
+        "skip.slice": 1,
+        "skip.examples": 1,
+        "pkg.build.dir": "${workspace.build.dir}/pkgs"
+    }
+}

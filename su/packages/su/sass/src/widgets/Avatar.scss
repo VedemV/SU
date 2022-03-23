@@ -1,0 +1,23 @@
+﻿/**
+ * @class SU.widgets.Avatar
+ */
+
+@include avatar-ui(
+    $color: $avatar-color,
+    $background-color: $avatar-background-color,
+    $background-color-inner: $avatar-background-color-inner,
+    $border-color: $avatar-border-color,
+    $border-width: $avatar-border-width,
+    $border-style: $avatar-border-style,
+    $border-radius: $avatar-border-radius,
+    $box-shadow: $avatar-box-shadow,
+    $font-weight: $avatar-font-weight,
+    $font-size: $avatar-font-size,
+    $line-height: $avatar-line-height,
+    $font-family: $avatar-font-family,
+    $text-transform: $avatar-text-transform
+);
+
+@if $avatar-plain-ui {
+    @include avatar-ui(map-merge((ui: plain), $avatar-plain-ui)...);
+}

@@ -1,0 +1,120 @@
+.#{$prefix}pulse-circle {
+    @include box-sizing(content-box);
+    @include border-radius(100%);
+    @include opacity(.5);
+    border: 2px solid #29AEE3;
+    /*border-color: $base-color;
+    border-color: var(--base-color);*/
+    /*border-color: $base-pressed-color;
+    border-color: var(--base-pressed-color);*/
+    position:absolute;
+    @include animation(circle-anim 2.4s infinite ease-in-out !important);
+    @include transition(all 0.5s);
+}
+.#{$prefix}pulse-circle-fill {
+    @include box-sizing(content-box);
+    @include border-radius(100%);
+    background-color:#29AEE3;
+    //background-color: $base-color;
+    //background-color: var(--base-color);
+    position:absolute;
+    border: 2px solid transparent;
+    @include animation(circle-fill-anim 2.3s infinite ease-in-out);
+    @include transition(all 0.5s);
+}
+
+.#{$prefix}pulse-icon-circle {
+    background-color:#29AEE3;
+    /*background-color: $base-color;*/
+    @include box-sizing(content-box);
+    @include opacity(.7);
+    position:absolute;
+    @include border-radius(100%);
+    border: 2px solid transparent;
+
+    &:hover{
+        @include opacity(1);
+    }
+}
+
+.#{$prefix}pulse-icon-circleblock {
+    @include box-sizing(content-box);
+    background-position: center center;
+    background-repeat:no-repeat;
+    @include animation(tossing 1.5s infinite);
+    color: #fff;
+    text-align: center;
+}
+
+@keyframes pulse {0% {transform: scale(0.9);opacity: 1;}
+    50% {transform: scale(1); opacity: 1; }   
+    100% {transform: scale(0.9);opacity: 1;}
+}
+
+ @-webkit-keyframes pulse {0% {-webkit-transform: scale(0.95);opacity: 1;}
+    50% {-webkit-transform: scale(1);opacity: 1;}   
+    100% {-webkit-transform: scale(0.95);opacity: 1;}
+}
+
+@keyframes tossing {
+    0% {transform: rotate(-8deg);}
+    50% {transform: rotate(8deg);}
+    100% {transform: rotate(-8deg);}
+}
+
+@-webkit-keyframes tossing {
+    0% {-webkit-transform: rotate(-8deg);}
+    50% {-webkit-transform: rotate(8deg);}
+    100% {-webkit-transform: rotate(-8deg);}
+}
+
+@-moz-keyframes circle-anim {
+    0% {-moz-transform: rotate(0deg) scale(0.5) skew(1deg);opacity: .1;-moz-opacity: .1;-webkit-opacity: .1;-o-opacity: .1;}
+    30% {-moz-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .5;-moz-opacity: .5;-webkit-opacity: .5;-o-opacity: .5;}
+    100% {-moz-transform: rotate(0deg) scale(1) skew(1deg);opacity: .6;-moz-opacity: .6;-webkit-opacity: .6;-o-opacity: .1;}
+}
+
+@-webkit-keyframes circle-anim {
+    0% {-webkit-transform: rotate(0deg) scale(0.5) skew(1deg);-webkit-opacity: .1;}
+    30% {-webkit-transform: rotate(0deg) scale(0.7) skew(1deg);-webkit-opacity: .5;}
+    100% {-webkit-transform: rotate(0deg) scale(1) skew(1deg);-webkit-opacity: .1;}
+}
+
+@-o-keyframes circle-anim {
+    0% {-o-transform: rotate(0deg) kscale(0.5) skew(1deg);-o-opacity: .1;}
+    30% {-o-transform: rotate(0deg) scale(0.7) skew(1deg);-o-opacity: .5;}
+    100% {-o-transform: rotate(0deg) scale(1) skew(1deg);-o-opacity: .1;}
+}
+
+@keyframes circle-anim {
+    0% {transform: rotate(0deg) scale(0.5) skew(1deg);opacity: .1;}
+    30% {transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .5;}
+    100% {transform: rotate(0deg) scale(1) skew(1deg);
+    opacity: .1;}
+}
+
+@-moz-keyframes circle-fill-anim {
+    0% {-moz-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+    50% {-moz-transform: rotate(0deg) -moz-scale(1) skew(1deg);opacity: .2;}
+    100% {-moz-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+}
+
+@-webkit-keyframes circle-fill-anim {
+    0% {-webkit-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;  }
+    50% {-webkit-transform: rotate(0deg) scale(1) skew(1deg);opacity: .2;  }
+    100% {-webkit-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+}
+
+@-o-keyframes circle-fill-anim {
+    0% {-o-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+    50% {-o-transform: rotate(0deg) scale(1) skew(1deg);opacity: .2;}
+    100% {-o-transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+}
+
+@keyframes circle-fill-anim {
+    0% {transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+    50% {transform: rotate(0deg) scale(1) skew(1deg);opacity: .2;}
+    100% {transform: rotate(0deg) scale(0.7) skew(1deg);opacity: .2;}
+}
+
+

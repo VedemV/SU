@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Гид",
+        "items": [
+            {
+                "name": "about",
+                "url": "guides/about",
+                "title": "Общие сведения",
+                "description": "Общие сведения, как начать работу"
+            },
+            {
+                "name": "workspace",
+                "url": "guides/workspace",
+                "title": "Создание workspace проекта",
+                "description": "Создание workspace проекта с несколькими приложениями на примере создания нативного приложения с нуля"
+            }
+        ]
+    },
+    {
+        "title": "Руководства Pallada",
+        "items": [
+            {
+                "name": "protocol",
+                "url": "guides/protocol",
+                "title": "Протокол обмена \"PalladaWSData\"",
+                "description": "Общие сведения об обмене с ядром."
+            },
+            {
+                "name": "structure_vsp",
+                "url": "guides/structure/vsp",
+                "title": "Запросы VSP",
+                "description": "Запросы VSP."
+            },
+            {
+                "title": "Команды VSP для конференций",
+                "name": "structure_vsp_conf_cmd",
+                "url": "guides/structure/vsp_conf_cmd"
+            },
+            {
+                "title": "Сообщения VSP",
+                "name": "vsp_event",
+                "url": "guides/vsp_event"
+            },
+            {
+                "title": "Установка WebRTC соединения",
+                "description": "Установка WebRTC соединения браузера с ядром",
+                "name": "rtc_connect",
+                "url": "guides/rtc_connect"
+            }
+        ]
+    }
+
+]

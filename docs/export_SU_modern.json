@@ -1,0 +1,21 @@
+{
+    "--": [
+        "../su/packages/su/src",
+        "../su/packages/su/overrides",
+        "../su/packages/su/sass",
+        "../su/packages/su/modern/src",
+        "../su/packages/su/modern/overrides",
+        "../su/packages/su/modern/sass",
+        "../su/packages/su-native/src",
+        "../su/packages/su-native/sass",
+        "../su/packages/su-native/overrides"
+    ],
+    "--warnings": [
+            "-all:ext",
+            "-aside",
+            "-link"
+    ],
+    "--export": "full",
+    "--output": "export/su-modern 1.0.1"
+
+}

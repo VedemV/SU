@@ -1,0 +1,40 @@
+﻿
+.x-label-helper-el {
+    width: 16px;
+    display: inline-block;
+    margin-left: 10px;
+    color: #64b5f6;
+    font-size: 1.2em;
+    line-height: 0;
+}
+
+.x-field-helper-sheet {
+    white-space: pre-wrap;
+    padding: 2px;
+    border-radius: 10px;
+    max-width: 300px;
+    max-height: 250px;
+    background-color: transparent;
+
+    .x-body-el {
+        padding: 10px;
+        background-color: #fffee5;
+    }
+
+    .x-panelheader {
+        min-height: unset;
+
+        .x-body-el {
+            padding: 0;
+        }
+
+        .x-paneltitle {
+            font-size: 13px;
+            color: #000;
+            padding: 10px;
+            margin: 0;
+            line-height: 12px;
+            font-weight: 600;
+        }
+    }
+}

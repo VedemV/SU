@@ -1,0 +1,55 @@
+{
+    "name": "SU",
+    "namespace": "SU",
+    "type": "framework",
+    "creator": "skillunion",
+    "summary": "Short summary",
+    "detailedDescription": "Long description of package",
+    "version": "1.0.1.7",
+    "compatVersion": "1.0.1",
+    "format": "1",
+    "output": "${workspace.dir}/build",
+    "build": {
+        "dir": "${package.output.base}"
+    },
+    "sass": {
+        "namespace": "SU",
+        "etc": "${package.dir}/sass/etc/all.scss",
+        "var": "${package.dir}/sass/var",
+        "src": "${package.dir}/sass/src"
+    },
+    "classpath": "${package.dir}/src",
+    "overrides": "${package.dir}/overrides",
+    "example": {
+        "path": [
+            "${package.dir}/examples"
+        ]
+    },
+    "local": true,
+    "requires": [],
+    "subpkgs": {
+        "dir": "${workspace.packages.dir}",
+        "packages": [
+            "su",
+            "su-native",
+            "material-icons",
+            "su-locale",
+            "su-dbproxies",
+            "din-pro"
+        ]
+    },
+    "language": {
+        "js": {
+            "input": {
+                "version": "ES5"
+            }
+        }
+    },
+    "properties": {
+        "skip.sass": 1,
+        "skip.slice": 1,
+        "skip.js": 1,
+        "skip.pkgs": 0,
+        "skip.examples": 0
+    }
+}

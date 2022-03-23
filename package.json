@@ -1,0 +1,34 @@
+{
+  "name": "SU",
+  "product": "ext",
+  "version": "1.0.0-0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^33.1.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "@sencha/eslint-plugin-extjs": "~7.3.0",
+    "prettier": "^2.3.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-prettier": "^1.2.0"
+  }
+}
