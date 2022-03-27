@@ -1,7 +1,7 @@
 {
     "name": "materialicons",
     "namespace": "MIcons",
-    "version": "1.0.1.7",
+    "version": "1.0.1.201",
     "framework": "ext",
 
     "requires": [
@@ -211,6 +211,9 @@
         }
     ],
 
+    "extras": [
+        "icon.png"
+    ],
     "archivePath": "../../archive/${app.name}/${build.id}",
 
     "classic": {

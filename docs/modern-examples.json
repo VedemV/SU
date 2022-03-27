@@ -5,16 +5,16 @@
       {
         "name": "material-icons",
         "title": "Material Icons",
-        "description": "Material Icons viewer",
+        "description": "Material Icons Viewer",
         "url": "materialicons/index.html",
-        "icon": "materialicons/feeds.gif",
+        "icon": "materialicons/icon.png",
         "device": "tablet",
         "status": "new"
       },
       {
         "name": "wsecho",
         "title": "WebSocket Echo",
-        "description": "Material Icons viewer",
+        "description": "WebSocket examination",
         "url": "WSEcho/index.html",
         "icon": "WSEcho/feeds.gif",
         "status": "new"

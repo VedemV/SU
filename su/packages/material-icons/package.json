@@ -6,7 +6,7 @@
     "creator": "skillunion",
     "summary": "Package wrapper for Material Fonts",
     "detailedDescription": "Sencha Cmd package wrapper for Google's Material Fonts",
-    "version": "1.0.1.7",
+    "version": "1.0.1.201",
     "compatVersion": "1.0.1",
     "format": "1",
     "output": "${workspace.packages.dir}/build",

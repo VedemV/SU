@@ -17,7 +17,7 @@ $ sencha package repo add skillunion https://skillunion.github.io/repo
 ```
 ## подключение в приложение
 
-В секции `reqires` файла `app.json` приложения добывить необходимые пакеты:
+В секции `reqires` файла `app.json` приложения добавить необходимые пакеты:
 
 - `su`: основной пакет дополнений для classic и modern
 - `su-native`: ExtJS компоненты с поддержкой нативных функций
