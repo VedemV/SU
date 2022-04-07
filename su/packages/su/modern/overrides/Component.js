@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Добавлено свойство конфигурации #formBind
  */
 Ext.define('SU.Component', {
@@ -13,5 +13,4 @@ Ext.define('SU.Component', {
          */
         formBind: false
     }
-
 });

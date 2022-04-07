@@ -1,7 +1,7 @@
 {
     "name": "search",
     "namespace": "Search",
-    "version": "1.0.1.201",
+    "version": "1.0.1.202",
     "framework": "ext",
     "indexHtmlPath": "index.html",
 

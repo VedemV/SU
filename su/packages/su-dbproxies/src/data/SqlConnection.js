@@ -1,14 +1,12 @@
 /**
- * 
+ *
  */
 Ext.define('SU.dbproxies.data.SqlConnection', {
     singleton: true,
-    
-    requires: [
-        'SU.dbproxies.config.Config'
-    ],
 
-    getConn: function() {
+    requires: ['SU.dbproxies.config.Config'],
+
+    getConn: function () {
         if (!Ext.isDefined(this.conn)) {
             if (window.sqlitePlugin) {
                 this.conn = window.sqlitePlugin.openDatabase({
@@ -23,9 +21,7 @@ Ext.define('SU.dbproxies.data.SqlConnection', {
                     SU.dbproxies.config.Config.dbSize
                 );
             }
-
         }
         return this.conn;
     }
-
 });

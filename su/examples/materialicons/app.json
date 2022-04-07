@@ -1,7 +1,7 @@
 {
     "name": "materialicons",
     "namespace": "MIcons",
-    "version": "1.0.1.201",
+    "version": "1.0.1.202",
     "framework": "ext",
 
     "requires": [

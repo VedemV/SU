@@ -86,10 +86,7 @@ Ext.define('SU.WebSocket', {
         observable: 'Ext.util.Observable'
     },
 
-    requires: [
-        'SU.Error',
-        'SU.WebSocketError'
-    ],
+    requires: ['SU.Error', 'SU.WebSocketError'],
 
     statics: {
         /**
@@ -308,16 +305,16 @@ Ext.define('SU.WebSocket', {
      * использовании в наследуемых классах с поддержкой контролируемых
      * команд (с использованием транзакций) возможны дополнительные состояния
      * под маской 0xFFF0.
-     * 
+     *
      * @return {Number} Текущее состояние соединения
-     * 
+     *
      * @protected
      *
      */
     getReadyState: function () {
         var me = this;
         if (!me.instance) return me.statics().INITIALIZE;
-        return 1 << me.instance.readyState | me.messageState.state;
+        return (1 << me.instance.readyState) | me.messageState.state;
     },
 
     /**
@@ -401,7 +398,6 @@ Ext.define('SU.WebSocket', {
             protocol = options.protocol || me.getProtocol() || [];
 
             if (me.fireEvent('beforeconnect', me, options) !== false) {
-
                 me.setUrl(url);
                 me.setProtocol(protocol);
                 me.connecting = true;
@@ -434,14 +430,12 @@ Ext.define('SU.WebSocket', {
         var me = this,
             state = me.getReadyState();
 
-        if (!!me.instance && (state !== me.statics().INITIALIZE && (state & me.statics().CLOSED) === 0)) {
-
+        if (!!me.instance && state !== me.statics().INITIALIZE && (state & me.statics().CLOSED) === 0) {
             if (me.fireEvent('beforedisconnect', me) !== false) {
                 me.bindEvents();
                 me.instance.close(1000);
                 me.handleInstanceClose({ code: 1000 });
             }
-
         } else {
             me.cleanup();
         }
@@ -453,9 +447,9 @@ Ext.define('SU.WebSocket', {
      * Подробнее см. [метод send WebSocket](http://dev.w3.org/html5/websockets/#dom-websocket-send).
      *
      * TODO: Проанализировать обработку исключений
-     * @param {String} data 
+     * @param {String} data
      * Отправляемые данные
-     * 
+     *
      * @return {Boolean} .
      */
     send: function (data) {
@@ -485,14 +479,14 @@ Ext.define('SU.WebSocket', {
      * Отправка команды в формате протокола обмена.
      * Абстрактный метод, который может быть переопределен для использования
      * в наследуемых классах с поддержкой определенного {@link #protocol протокола обмена}.
-     * 
-     * @param {Object} options 
+     *
+     * @param {Object} options
      * Отправляемая команда
-     * 
+     *
      * @return {Boolean} .
      * @abstract
      */
-    sendCommand: function (options) { },
+    sendCommand: function (options) {},
 
     /**
      * Отправка команд с контролем ответа.
@@ -500,17 +494,17 @@ Ext.define('SU.WebSocket', {
      * Абстрактный метод, который может быть переопределен для использования
      * в наследуемых классах с поддержкой контролируемых команд
      * (с использованием транзакций).
-     * 
-     * @param {Object} options 
+     *
+     * @param {Object} options
      * Отправляемая команда
-     * 
+     *
      * @return {Object|Boolean}
      * Объект, содержащий параметры транзакции
      * при успешной отправке команды или false при ошибке отправки команды.
-     * 
+     *
      * @abstract
      */
-    sendControlledComand: function (options) { },
+    sendControlledComand: function (options) {},
 
     /**
      * Отправка контролируемого запроса.
@@ -518,17 +512,17 @@ Ext.define('SU.WebSocket', {
      * Абстрактный метод, который может быть переопределен для использования
      * в наследуемых классах с поддержкой контролируемых команд
      * (с использованием транзакций).
-     * 
+     *
      * @param {Object} options
      * Параметры запроса
-     * 
-     * @return {Object|Boolean} 
+     *
+     * @return {Object|Boolean}
      * Объект, содержащий параметры транзакции
      * при успешной отправке команды или false при ошибке отправки команды.
-     * 
+     *
      * @abstract
      */
-    request: function (options) { },
+    request: function (options) {},
 
     /**
      * Прерывание выполнения контролируемого запроса.
@@ -536,17 +530,17 @@ Ext.define('SU.WebSocket', {
      * Абстрактный метод, который может быть переопределен для использования
      * в наследуемых классах с поддержкой контролируемых команд
      * (с использованием транзакций).
-     * 
-     * @param {Object} request 
+     *
+     * @param {Object} request
      * Запрос из списка контролируемых запросов (транзакций).
-     * 
+     *
      * @abstract
      */
-    abort: function (request) { },
+    abort: function (request) {},
 
     /**
      * Назначение / снятие обработчиков обратного вызова для {@link #instance}.
-     * 
+     *
      * @param {Boolean} set
      * - true - назначение собственных обработчиков
      * [onopen](http://dev.w3.org/html5/websockets/#handler-websocket-onopen),
@@ -554,7 +548,7 @@ Ext.define('SU.WebSocket', {
      * [onmessage](http://dev.w3.org/html5/websockets/#handler-websocket-onmessage),
      * [onerror](http://dev.w3.org/html5/websockets/#handler-websocket-onerror);
      * - false - освобождение обработчиков.
-     * 
+     *
      * @private
      */
     bindEvents: function (set) {
@@ -570,7 +564,7 @@ Ext.define('SU.WebSocket', {
      * Предварительная обработка события установки соединения
      * [onopen WebSocket](http://dev.w3.org/html5/websockets/#handler-websocket-onopen).
      *
-     * @param {Ext.event.Event} e 
+     * @param {Ext.event.Event} e
      * Событие WebSocket
      *
      * @fires connect
@@ -587,12 +581,12 @@ Ext.define('SU.WebSocket', {
     /**
      * Предварительная обработка события
      * [onclose WebSocket](http://dev.w3.org/html5/websockets/#handler-websocket-onclose).
-     * 
-     * @param {Ext.event.Event} e 
+     *
+     * @param {Ext.event.Event} e
      * [Событие close WebSocket](http://dev.w3.org/html5/websockets/#closeevent)
-     * 
+     *
      * @fires disconnect
-     * 
+     *
      * @protected
      */
     handleInstanceClose: function (e) {
@@ -604,10 +598,10 @@ Ext.define('SU.WebSocket', {
 
     /**
      * Обработка события onerror WebSocket.
-     * 
-     * @param {Ext.event.Event} event 
+     *
+     * @param {Ext.event.Event} event
      * Событие WebSocket
-     * 
+     *
      * @protected
      */
     handleInstanceError: function (event) {
@@ -648,21 +642,20 @@ Ext.define('SU.WebSocket', {
     /**
      * Проверка значения строки адреса сервера в формате
      * ( [__ws__://] | __wss__:// ) hostname [:port].
-     * 
-     * @param {String} value 
+     *
+     * @param {String} value
      * URL сервера
-     * 
+     *
      * @return {String}
      * Валидный URL сервера
-     * 
+     *
      * @private
      */
     applyUrl: function (value) {
-
         if (value) {
-
-            var parts = new RegExp('^(([^:/\\?#]+)://)?((([^:/\\?#]*)(?::([^/\\?#]*))?))?([^\\?#]*)(\\?([^#]*))?(#(.*))?$')
-                    .exec(value),
+            var parts = new RegExp(
+                    '^(([^:/\\?#]+)://)?((([^:/\\?#]*)(?::([^/\\?#]*))?))?([^\\?#]*)(\\?([^#]*))?(#(.*))?$'
+                ).exec(value),
                 purl = {
                     href: parts[0] || '',
                     protocol: (parts[2] || '').toLowerCase(),
@@ -695,7 +688,7 @@ Ext.define('SU.WebSocket', {
                 purl.protocol,
                 '://',
                 purl.hostname,
-                ((purl.port === '') ? '' : (':' + purl.port)),
+                purl.port === '' ? '' : ':' + purl.port,
                 purl.pathname,
                 purl.search,
                 purl.hash
@@ -709,7 +702,7 @@ Ext.define('SU.WebSocket', {
      * Окончательная обработка установки соединения.
      *
      * @param {Ext.WebSocket} ws .
-     * 
+     *
      * @protected
      */
     doConnect: function (ws) {
@@ -721,10 +714,10 @@ Ext.define('SU.WebSocket', {
     /**
      * Окончательная обработка разрыва соединения.
      * @param {Ext.WebSocket} ws .
-     * 
-     * @param {Ext.event.Event} event 
+     *
+     * @param {Ext.event.Event} event
      * [Событие close WebSocket](http://dev.w3.org/html5/websockets/#closeevent)
-     * 
+     *
      * @protected
      */
     doDisconnect: function (ws, event) {

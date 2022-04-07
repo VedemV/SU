@@ -1,13 +1,14 @@
 /**
- * 
+ *
  */
 Ext.define('SU.native.overrides.fix.EventPublisherDom', {
     override: 'Ext.event.publisher.Dom',
-    
-    doDirectEvent: function(e, capture) {
+
+    doDirectEvent: function (e, capture) {
         var me = this,
             currentTarget = e.currentTarget,
-            timeStamp, el;
+            timeStamp,
+            el;
 
         e = new Ext.event.Event(e);
 
@@ -25,11 +26,11 @@ Ext.define('SU.native.overrides.fix.EventPublisherDom', {
         FIX
         el = Ext.cache[currentTarget.id];
         */
-       
-        if(currentTarget){
+
+        if (currentTarget) {
             el = Ext.cache[currentTarget.id];
         }
-        
+
         // Element can be removed from the cache by this time, with the node
         // still lingering for some reason. This can happen for example when
         // load event is fired on an iframe that we constructed when submitting
@@ -49,7 +50,4 @@ Ext.define('SU.native.overrides.fix.EventPublisherDom', {
 
         me.afterEvent(e);
     }
-    
 });
-
-

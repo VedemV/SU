@@ -6,9 +6,7 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
     alias: 'proxy.sql',
     extend: 'SU.dbproxies.data.proxy.Db',
 
-    requires: [
-        'SU.dbproxies.data.SqlConnection'
-    ],
+    requires: ['SU.dbproxies.data.SqlConnection'],
 
     isSQLProxy: true,
 
@@ -34,32 +32,34 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
     },
 
     statics: {
-        isSupported: function() {
+        isSupported: function () {
             return !!window.openDatabase;
         }
     },
 
-    getDatabaseObject: function() {
+    getDatabaseObject: function () {
         return SU.dbproxies.data.SqlConnection.getConn();
     },
 
-    updateModel: function(model) {
-
+    updateModel: function (model) {
         var modelName;
         var defaultDateFormat;
         var table;
 
         if (model) {
-
             modelName = model.prototype.entityName;
             defaultDateFormat = this.getDefaultDateFormat();
             table = modelName.slice(modelName.lastIndexOf('.') + 1);
 
-            Ext.each(model.getFields(), function(field) {
-                if (field.getType().type === 'date' && !field.getDateFormat()) {
-                    field.setDateFormat(defaultDateFormat);
-                }
-            }, this);
+            Ext.each(
+                model.getFields(),
+                function (field) {
+                    if (field.getType().type === 'date' && !field.getDateFormat()) {
+                        field.setDateFormat(defaultDateFormat);
+                    }
+                },
+                this
+            );
 
             if (!this.getTableName()) {
                 this.setTableName(table);
@@ -69,25 +69,21 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         this.callParent(arguments);
-
     },
 
-    createTable: function(transaction) {
-
-        transaction.executeSql([
-            'CREATE TABLE IF NOT EXISTS ',
-            this.getTableName(),
-            ' (', this.getSchemaString(), ')'
-        ].join(''));
+    createTable: function (transaction) {
+        transaction.executeSql(
+            ['CREATE TABLE IF NOT EXISTS ', this.getTableName(), ' (', this.getSchemaString(), ')'].join('')
+        );
         this.tableExists = true;
-
     },
 
-    getColumnValues: function(columns, data) {
-
+    getColumnValues: function (columns, data) {
         var ln = columns.length,
             values = [],
-            i, column, value;
+            i,
+            column,
+            value;
 
         for (i = 0; i < ln; i++) {
             column = columns[i];
@@ -98,11 +94,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         return values;
-
     },
 
-    getPersistedModelColumns: function(model) {
-
+    getPersistedModelColumns: function (model) {
         var fields = model.getFields().items;
         var columns = [];
         var ln = fields.length;
@@ -124,11 +118,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         return columns;
-
     },
 
     readDate: function (field, date) {
-
         if (Ext.isEmpty(date)) {
             return null;
         }
@@ -136,7 +128,6 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         if (Ext.isDate(date)) {
             return date;
         }
-        
 
         var dateFormat = field.getDateFormat() || this.getDefaultDateFormat();
         switch (dateFormat) {
@@ -147,11 +138,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             default:
                 return Ext.Date.parse(date, 'time');
         }
-
     },
 
-    writeDate: function(field, date) {
-
+    writeDate: function (field, date) {
         if (Ext.isEmpty(date)) {
             return null;
         }
@@ -165,26 +154,25 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             default:
                 return date.getTime();
         }
-
     },
 
-    dropTable: function(config) {
-
+    dropTable: function (config) {
         var me = this;
         var table = me.getTableName();
         var callback = config ? config.callback : null;
         var scope = config ? config.scope || me : null;
         var db = me.getDatabaseObject();
 
-        db.transaction(function(transaction) {
+        db.transaction(
+            function (transaction) {
                 transaction.executeSql('DROP TABLE ' + table);
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, false, table, error);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, true, table);
                 }
@@ -192,11 +180,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         );
 
         me.tableExists = false;
-
     },
 
-    getSchemaString: function() {
-
+    getSchemaString: function () {
         var schema = [];
         var model = this.getModel();
         var idProperty = model.prototype.getIdProperty();
@@ -235,25 +221,25 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         return schema.join(', ');
-
     },
 
-    decodeRecordData: function(data) {
-
+    decodeRecordData: function (data) {
         var key;
         var newData = {};
         var fields = this.getModel().getFields().items;
         var fieldTypes = {};
 
-        Ext.each(fields, function(field) {
+        Ext.each(fields, function (field) {
             fieldTypes[field.getName()] = field.type;
         });
 
         for (key in data) {
-            if (Ext.isDefined(fieldTypes[key]) &&
-                (fieldTypes[key] == 'auto') &&
+            if (
+                Ext.isDefined(fieldTypes[key]) &&
+                fieldTypes[key] == 'auto' &&
                 Ext.isString(data[key]) &&
-                Ext.Array.contains(['[', '{'], data[key][0])) {
+                Ext.Array.contains(['[', '{'], data[key][0])
+            ) {
                 if (Ext.isEmpty(data[key])) {
                     newData[key] = null;
                 } else {
@@ -269,8 +255,7 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         return newData;
     },
 
-    getRecordData: function(record) {
-
+    getRecordData: function (record) {
         var fields = record.getFields();
         var data = {};
         var name;
@@ -280,32 +265,32 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         var implicitData = {};
         var field;
 
-        Ext.each(fields, function(field) {
+        Ext.each(
+            fields,
+            function (field) {
+                explicitFieldNames.push(field.name);
+                if (!Ext.isDefined(field.persist) || field.persist) {
+                    name = field.name;
 
-            explicitFieldNames.push(field.name);
-            if (!Ext.isDefined(field.persist) || field.persist) {
-                name = field.name;
-
-                value = record.get(name);
-                if (field.type == 'date') {
-                    newValue = this.writeDate(field, value);
-                }
-                else if (!Ext.isDefined(value)) {
-                    newValue = "";
-                }
-                else if (field.type == 'auto' && (Ext.isObject(value) || Ext.isArray(value))) {
-                    if (Ext.isEmpty(value)) {
-                        newValue = "";
+                    value = record.get(name);
+                    if (field.type == 'date') {
+                        newValue = this.writeDate(field, value);
+                    } else if (!Ext.isDefined(value)) {
+                        newValue = '';
+                    } else if (field.type == 'auto' && (Ext.isObject(value) || Ext.isArray(value))) {
+                        if (Ext.isEmpty(value)) {
+                            newValue = '';
+                        } else {
+                            newValue = Ext.encode(value);
+                        }
                     } else {
-                        newValue = Ext.encode(value);
+                        newValue = value;
                     }
-                } else {
-                    newValue = value;
+                    data[name] = newValue;
                 }
-                data[name] = newValue;
-            }
-
-        }, this);
+            },
+            this
+        );
 
         if (this.getImplicitFields()) {
             for (field in record.data) {
@@ -319,7 +304,7 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         return data;
     },
 
-    convertToSqlType: function(type) {
+    convertToSqlType: function (type) {
         switch (type.toLowerCase()) {
             case 'date':
             case 'string':
@@ -338,7 +323,7 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
     },
 
-    transactionError: function(tx, error) {
+    transactionError: function (tx, error) {
         //return;
         var args = arguments;
         var options = args[args.length - 1];
@@ -349,10 +334,8 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
     },
 
-
     /* CREATE */
-    create: function(operation) {
-
+    create: function (operation) {
         var options = {
             operation: operation,
             records: operation.getRecords()
@@ -363,11 +346,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             Ext.bind(this.createTransaction, this, [options], true),
             Ext.bind(this.transactionError, this, [options], true)
         );
-
     },
 
-    createTransaction: function(tx) {
-
+    createTransaction: function (tx) {
         var args = arguments;
         var options = args[args.length - 1];
         var tmp = [];
@@ -398,11 +379,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         });
 
         Ext.each(options.records, Ext.bind(this.createRecord, this, [options], true));
-
     },
 
-    createRecord: function(record, i, records, options) {
-
+    createRecord: function (record, i, records, options) {
         if (!record.phantom) {
             options.executedRecords += 1;
             this.createRecordCallback(options);
@@ -413,19 +392,24 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         var data = this.getRecordData(record);
         var values = this.getColumnValues(options.columns, data);
 
-        options.tx.executeSql([
-                'INSERT INTO ', options.table,
-                ' (', options.columns.join(', '), ')',
-                ' VALUES (', options.placeholders, ')'
-            ].join(''), values,
+        options.tx.executeSql(
+            [
+                'INSERT INTO ',
+                options.table,
+                ' (',
+                options.columns.join(', '),
+                ')',
+                ' VALUES (',
+                options.placeholders,
+                ')'
+            ].join(''),
+            values,
             Ext.bind(this.createRecordSuccess, this, [options, record, data], true),
             Ext.bind(this.createRecordError, this, [options, record], true)
         );
-
     },
 
-    createRecordSuccess: function(tx, result, options, record, data) {
-
+    createRecordSuccess: function (tx, result, options, record, data) {
         data = this.decodeRecordData(data);
 
         if (this.getCloud() && record.session) {
@@ -443,11 +427,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         record.commit();
 
         this.createRecordCallback(options);
-
     },
 
-    createRecordError: function(tx, error, options, record) {
-
+    createRecordError: function (tx, error, options, record) {
         console.error('INSERT ERROR:', error);
 
         options.executedRecords += 1;
@@ -457,17 +439,15 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         });
 
         this.createRecordCallback(options);
-
     },
 
-    createRecordCallback: function(options) {
+    createRecordCallback: function (options) {
         if (options.executedRecords === options.totalRecords) {
             this.createComplete(options);
         }
     },
 
-    createComplete: function(options) {
-
+    createComplete: function (options) {
         if (options.operation.process(options.resultSet) === false) {
             this.fireEvent('exception', this, options.operation);
         }
@@ -475,13 +455,10 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         if (options.errors) {
             options.operation.setException(options.errors);
         }
-
     },
 
-
     /* ERASE */
-    erase: function(operation, callback, scope) {
-
+    erase: function (operation, callback, scope) {
         var erasedRecords = [];
         var options = {
             operation: operation,
@@ -502,11 +479,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             Ext.bind(this.transactionError, this, [options], true),
             Ext.bind(this.eraseTransactionSuccess, this, [options], true)
         );
-
     },
 
-    eraseTransaction: function(tx) {
-
+    eraseTransaction: function (tx) {
         var args = arguments;
         var options = args[args.length - 1];
 
@@ -522,21 +497,18 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         });
 
         Ext.each(options.records, Ext.bind(this.eraseRecord, this, [options], true));
-
     },
 
-    eraseRecord: function(record, i, records, options) {
-        options.tx.executeSql([
-                'DELETE FROM ', options.table,
-                ' WHERE ', options.idProperty, ' = ?'
-            ].join(''), [record.getId()],
+    eraseRecord: function (record, i, records, options) {
+        options.tx.executeSql(
+            ['DELETE FROM ', options.table, ' WHERE ', options.idProperty, ' = ?'].join(''),
+            [record.getId()],
             Ext.bind(this.eraseRecordSuccess, this, [options, record], true),
             Ext.emptyFn
         );
     },
 
-    eraseRecordSuccess: function(tx, result, options, record) {
-
+    eraseRecordSuccess: function (tx, result, options, record) {
         if (this.getCloud() && record.session) {
             record.session.addOperation({
                 model: record.get('model'),
@@ -546,10 +518,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         options.erasedRecords.push(record);
-
     },
 
-    eraseTransactionSuccess: function() {
+    eraseTransactionSuccess: function () {
         var args = arguments;
         var options = args[args.length - 1];
 
@@ -564,10 +535,8 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         Ext.callback(options.callback, options.scope, [options.operation]);
     },
 
-
     /* READ */
-    read: function(operation, callback, scope) {
-
+    read: function (operation, callback, scope) {
         var options = {
             operation: operation,
             callback: callback || Ext.emptyFn,
@@ -579,11 +548,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             Ext.bind(this.readTransaction, this, [options], true),
             Ext.bind(this.transactionError, this, [options], true)
         );
-
     },
 
-    readTransaction: function(tx) {
-
+    readTransaction: function (tx) {
         var args = arguments;
         var options = args[args.length - 1];
         var records = [];
@@ -624,15 +591,15 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             sql = this.readMultipleBuildQuery(options, values);
         }
 
-        options.tx.executeSql(sql, values,
+        options.tx.executeSql(
+            sql,
+            values,
             Ext.bind(this.readQuerySuccess, this, [options], true),
             Ext.bind(this.readQueryError, this, [options], true)
         );
-
     },
 
-    readQuerySuccess: function(tx, result, options) {
-
+    readQuerySuccess: function (tx, result, options) {
         var rows = result.rows;
         var count = rows.length;
         var i;
@@ -641,9 +608,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
 
         for (i = 0; i < count; i += 1) {
             data = this.decodeRecordData(rows.item(i));
-            options.records.push(Ext.isFunction(options.recordCreator) ?
-                options.recordCreator(data, model) :
-                new model(data));
+            options.records.push(
+                Ext.isFunction(options.recordCreator) ? options.recordCreator(data, model) : new model(data)
+            );
         }
 
         options.resultSet.setSuccess(true);
@@ -651,11 +618,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         options.resultSet.setCount(count);
 
         this.readComplete(options);
-
     },
 
-    readQueryError: function(tx, errors, options) {
-
+    readQueryError: function (tx, errors, options) {
         console.error('READ ERROR:', errors);
         options.errors.push(errors);
 
@@ -664,25 +629,19 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         options.resultSet.setCount(0);
     },
 
-    readFromIdBuildQuery: function(options, values) {
+    readFromIdBuildQuery: function (options, values) {
         values.push(options.params.recordId);
-        return [
-            'SELECT * FROM ', options.table,
-            ' WHERE ', options.idProperty, ' = ?'
-        ].join('');
+        return ['SELECT * FROM ', options.table, ' WHERE ', options.idProperty, ' = ?'].join('');
     },
 
-    readMultipleBuildQuery: function(options, values) {
-
+    readMultipleBuildQuery: function (options, values) {
         var ln;
         var i;
         var filter;
         var sorter;
         var property;
         var value;
-        var sql = [
-            'SELECT * FROM ', options.table
-        ].join('');
+        var sql = ['SELECT * FROM ', options.table].join('');
 
         // filters
         if (options.params.filters && options.params.filters.length) {
@@ -693,8 +652,10 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
                 value = filter.getValue();
                 if (property !== null) {
                     sql += [
-                        i === 0 ? ' WHERE ' : ' AND ', property,
-                        ' ', (filter.getAnyMatch() ? ('LIKE \'%' + value + '%\'') : '= ?')
+                        i === 0 ? ' WHERE ' : ' AND ',
+                        property,
+                        ' ',
+                        filter.getAnyMatch() ? "LIKE '%" + value + "%'" : '= ?'
                     ].join('');
                     if (!filter.getAnyMatch()) {
                         values.push(value);
@@ -710,25 +671,22 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
                 sorter = options.params.sorters[i];
                 property = sorter.getProperty();
                 if (property !== null) {
-                    sql += [
-                        i === 0 ? ' ORDER BY ' : ', ', property, ' ', sorter.getDirection()
-                    ].join('');
+                    sql += [i === 0 ? ' ORDER BY ' : ', ', property, ' ', sorter.getDirection()].join('');
                 }
             }
         }
 
         // handle start, limit, sort, filter and group params
         if (Ext.isDefined(options.params.page)) {
-            sql += [
-                ' LIMIT ' + parseInt(options.params.start, 10) + ', ' + parseInt(options.params.limit, 10)
-            ].join('');
+            sql += [' LIMIT ' + parseInt(options.params.start, 10) + ', ' + parseInt(options.params.limit, 10)].join(
+                ''
+            );
         }
 
         return sql;
     },
 
-    readComplete: function(options) {
-
+    readComplete: function (options) {
         if (options.operation.process(options.resultSet) === false) {
             this.fireEvent('exception', this, options.operation);
         }
@@ -738,13 +696,10 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         Ext.callback(options.callback, options.scope, [options.operation]);
-
     },
 
-
     /* UPDATE */
-    update: function(operation, callback, scope) {
-
+    update: function (operation, callback, scope) {
         var options = {
             operation: operation,
             callback: callback || Ext.emptyFn,
@@ -757,11 +712,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             Ext.bind(this.updateTransaction, this, [options], true),
             Ext.bind(this.transactionError, this, [options], true)
         );
-
     },
 
-    updateTransaction: function(tx) {
-
+    updateTransaction: function (tx) {
         var args = arguments;
         var options = args[args.length - 1];
         var updatedRecords = [];
@@ -786,11 +739,9 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         });
 
         Ext.each(options.records, Ext.bind(this.updateRecord, this, [options], true));
-
     },
 
-    updateRecord: function(record, rI, records, options) {
-
+    updateRecord: function (record, rI, records, options) {
         var id = record.getId();
         var data = this.getRecordData(record);
         var values = this.getColumnValues(options.columns, data);
@@ -818,9 +769,13 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         }
 
         if (this.getImplicitFields()) {
-            Ext.each(fields, function(field) {
-                explicitFieldNames.push(field.name);
-            }, this);
+            Ext.each(
+                fields,
+                function (field) {
+                    explicitFieldNames.push(field.name);
+                },
+                this
+            );
             for (field in record.data) {
                 if (Ext.Array.contains(explicitFieldNames, field)) {
                     continue;
@@ -844,19 +799,15 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
             return;
         }
 
-        options.tx.executeSql([
-                'UPDATE ', options.table,
-                ' SET ', updates.join(', '),
-                ' WHERE ', options.idProperty, ' = ?'
-            ].join(''), modValues.concat(id),
+        options.tx.executeSql(
+            ['UPDATE ', options.table, ' SET ', updates.join(', '), ' WHERE ', options.idProperty, ' = ?'].join(''),
+            modValues.concat(id),
             Ext.bind(this.updateRecordSuccess, this, [options, record, data, modData], true),
             Ext.bind(this.updateRecordError, this, [options, record], true)
         );
-
     },
 
-    updateRecordSuccess: function(tx, result, options, record, data, modData) {
-
+    updateRecordSuccess: function (tx, result, options, record, data, modData) {
         var recordId = record.getId();
         var key;
         var model = record.get('model');
@@ -881,8 +832,7 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         this.updateRecordCallback(options);
     },
 
-    updateRecordError: function(tx, error, options, record) {
-
+    updateRecordError: function (tx, error, options, record) {
         console.error('UPDATE ERROR:', error);
 
         options.executedRecords += 1;
@@ -892,16 +842,15 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
         });
 
         this.updateRecordCallback(options);
-
     },
 
-    updateRecordCallback: function(options) {
+    updateRecordCallback: function (options) {
         if (options.executedRecords === options.totalRecords) {
             this.updateComplete(options);
         }
     },
 
-    updateComplete: function(options) {
+    updateComplete: function (options) {
         if (options.operation.process(options.resultSet) === false) {
             this.fireEvent('exception', this, options.operation);
         }
@@ -912,5 +861,4 @@ Ext.define('SU.dbproxies.data.proxy.Sql', {
 
         Ext.callback(options.callback, options.scope, [options.operation]);
     }
-
 });

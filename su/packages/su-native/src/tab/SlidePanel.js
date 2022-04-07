@@ -1,14 +1,11 @@
 ﻿/**
- * 
+ *
  */
 Ext.define('SU.native.tab.SlidePanel', {
     extend: 'Ext.carousel.Carousel',
     alias: 'widget.slidetabpanel',
 
-    requires: [
-        'Ext.tab.Bar',
-        'Ext.tab.Tab'
-    ],
+    requires: ['Ext.tab.Bar', 'Ext.tab.Tab'],
 
     config: {
         /**
@@ -26,11 +23,11 @@ Ext.define('SU.native.tab.SlidePanel', {
          */
         tabBarPosition: 'top',
 
-        indicator: false,
+        indicator: false
     },
 
     defaults: {
-        allowHeader: false,
+        allowHeader: false
         //layout: 'fit'
     },
 
@@ -52,8 +49,7 @@ Ext.define('SU.native.tab.SlidePanel', {
     },
 
     applyTabBar: function (config) {
-        var innerItems,
-            activeItem;
+        var innerItems, activeItem;
 
         if (this.isConfiguring) {
             activeItem = this.initialConfig.activeItem || 0;
@@ -116,19 +112,19 @@ Ext.define('SU.native.tab.SlidePanel', {
         var tabBar = me.getTabBar(),
             initialConfig = card.getInitialConfig(),
             tabConfig = initialConfig.tab || {},
-            tabTitle = (card.getTitle) ? card.getTitle() : initialConfig.title,
-            tabClosable = (card.getClosable) ? card.getClosable() : initialConfig.closable,
-            tabIconAlign = (card.getIconAlign) ? card.getIconAlign() : initialConfig.iconAlign,
-            tabIconCls = (card.getIconCls) ? card.getIconCls() : initialConfig.iconCls,
-            tabIcon = (card.getIcon) ? card.getIcon() : initialConfig.icon,
-            tabHidden = (card.getHidden) ? card.getHidden() : initialConfig.hidden,
-            tabDisabled = (card.getDisabled) ? card.getDisabled() : initialConfig.disabled,
-            tabBadgeText = (card.getBadgeText) ? card.getBadgeText() : initialConfig.badgeText,
+            tabTitle = card.getTitle ? card.getTitle() : initialConfig.title,
+            tabClosable = card.getClosable ? card.getClosable() : initialConfig.closable,
+            tabIconAlign = card.getIconAlign ? card.getIconAlign() : initialConfig.iconAlign,
+            tabIconCls = card.getIconCls ? card.getIconCls() : initialConfig.iconCls,
+            tabIcon = card.getIcon ? card.getIcon() : initialConfig.icon,
+            tabHidden = card.getHidden ? card.getHidden() : initialConfig.hidden,
+            tabDisabled = card.getDisabled ? card.getDisabled() : initialConfig.disabled,
+            tabBadgeText = card.getBadgeText ? card.getBadgeText() : initialConfig.badgeText,
             innerItems = me.getInnerItems(),
             index = innerItems.indexOf(card),
             tabs = tabBar.getItems(),
             activeTab = tabBar.getActiveTab(),
-            currentTabInstance = (tabs.length >= innerItems.length) && tabs.getAt(index),
+            currentTabInstance = tabs.length >= innerItems.length && tabs.getAt(index),
             header = card.getConfig('header', false, true),
             tabInstance;
 
@@ -197,7 +193,8 @@ Ext.define('SU.native.tab.SlidePanel', {
     onItemRemove: function (item, index, destroying) {
         var me = this,
             meDestroying = me.meDestroying,
-            clearBar, tabBar;
+            clearBar,
+            tabBar;
 
         if (!meDestroying) {
             tabBar = me.getTabBar();
@@ -268,6 +265,4 @@ Ext.define('SU.native.tab.SlidePanel', {
             item.tab.setDisabled(newDisabled);
         }
     }
-
-
 });

@@ -1,7 +1,7 @@
 {
     "name": "WSEcho",
     "namespace": "WSEcho",
-    "version": "1.0.1.201",
+    "version": "1.0.1.202",
     "framework": "ext",
     "toolkit": "classic",
     "theme": "theme-triton",

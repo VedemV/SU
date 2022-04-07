@@ -14,13 +14,12 @@
 Ext.define('SU.locale.model.ClientModel', {
     extend: 'Ext.data.Model',
 
-	config: {
-		fields: [
-			{name: 'client'},
-			{name: 'method'},
-			{name: 'key', type: 'string'},
-			{name: 'allowEmpty', type: 'boolean', defaultValue: false }
-		]
-	}
-
+    config: {
+        fields: [
+            { name: 'client' },
+            { name: 'method' },
+            { name: 'key', type: 'string' },
+            { name: 'allowEmpty', type: 'boolean', defaultValue: false }
+        ]
+    }
 });

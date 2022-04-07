@@ -1,4 +1,3 @@
-
 /**
  * Правим ошибку "Cannot read property 'getBox' of undefined" в doEnsureBufferZone
  */
@@ -6,7 +5,6 @@ Ext.define('SU.dataview.plugin.ListPaging', {
     override: 'Ext.dataview.plugin.ListPaging',
 
     privates: {
-
         doEnsureBufferZone: function () {
             var me = this,
                 list = me.cmp,
@@ -14,7 +12,10 @@ Ext.define('SU.dataview.plugin.ListPaging', {
                 scroller = list.getScrollable(),
                 count = store && store.getCount(),
                 bufferZone = me.getBufferZone(),
-                item, box, y, index;
+                item,
+                box,
+                y,
+                index;
 
             if (!store || !count || !scroller || me.getLoading()) {
                 return;
@@ -46,4 +47,3 @@ Ext.define('SU.dataview.plugin.ListPaging', {
         }
     }
 });
-

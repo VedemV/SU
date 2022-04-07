@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.ru.picker.Picker', {
     override: 'Ext.picker.Picker',
 
@@ -8,7 +7,7 @@ Ext.define('SU.locale.ru.picker.Picker', {
                 config = {};
             }
 
-            if (typeof config == "string") {
+            if (typeof config == 'string') {
                 config = {
                     text: config
                 };
@@ -29,7 +28,7 @@ Ext.define('SU.locale.ru.picker.Picker', {
                 config = {};
             }
 
-            if (typeof config == "string") {
+            if (typeof config == 'string') {
                 config = {
                     text: config
                 };
@@ -43,5 +42,4 @@ Ext.define('SU.locale.ru.picker.Picker', {
 
         return Ext.factory(config, 'Ext.Button', oldButton);
     }
-
 });

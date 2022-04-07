@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.en.Panel', {
     override: 'Ext.Panel',
 
@@ -10,7 +9,7 @@ Ext.define('SU.locale.en.Panel', {
             ignore: { text: 'Ignore' },
             yes: { text: 'Yes' },
             no: { text: 'No' },
-            cancel: {text: 'Cancel' },
+            cancel: { text: 'Cancel' },
             apply: { text: 'Apply' },
             save: { text: 'Save' },
             submit: { text: 'Submit' },

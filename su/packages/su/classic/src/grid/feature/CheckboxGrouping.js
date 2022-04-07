@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 Ext.define('SU.grid.feature.CheckboxGrouping', {
     extend: 'Ext.grid.feature.Grouping',
@@ -24,7 +24,6 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
     tdCls: Ext.baseCSSPrefix + 'grid-cell-special ' + Ext.baseCSSPrefix + 'selmodel-column',
     targetCls: 'group-checkbox',
 
-
     init: function (grid) {
         var store = grid.getStore(),
             view = grid.getView();
@@ -38,7 +37,8 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
         });
 
         //this.groupHeaderTpl = '<input class="' + this.targetCls + '" {[values.record && (values.record.selected ? "checked" : "")]} type="checkbox"> {name}';
-        this.groupHeaderTpl = '<input class="' + this.targetCls + '" {[values.isChecked ? "checked" : ""]} type="checkbox"> {name}';
+        this.groupHeaderTpl =
+            '<input class="' + this.targetCls + '" {[values.isChecked ? "checked" : ""]} type="checkbox"> {name}';
 
         this.callParent(arguments);
     },
@@ -59,7 +59,11 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
                 });
             }
 
-            if (!ownerLockable || (view.isLockedView && (me.hasLockedHeader() || isLocked)) || (view.isNormalView && !me.column)) {
+            if (
+                !ownerLockable ||
+                (view.isLockedView && (me.hasLockedHeader() || isLocked)) ||
+                (view.isNormalView && !me.column)
+            ) {
                 me.addCheckbox(view);
                 me.mon(view.ownerGrid, {
                     beforereconfigure: me.onBeforeReconfigure,
@@ -90,7 +94,8 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
 
     hasLockedHeader: function () {
         var columns = this.grid.getVisibleColumnManager().getColumns(),
-            len = columns.length, i;
+            len = columns.length,
+            i;
 
         for (i = 0; i < len; i++) {
             if (columns[i].locked) {
@@ -174,7 +179,6 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
         if (store) {
             store.on('update', me.onStoreUpdate, me);
         }
-
     },
 
     addCheckbox: function (view) {
@@ -223,7 +227,7 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
                 record.beginEdit();
                 record.set(this.dataIndex, checked, { dirty: false });
                 record.endEdit();
-            },
+            }
             //isRecordChecked: Ext.bind(me.isRowSelected, me)
         };
 
@@ -231,8 +235,7 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
             config.tabIndex = undefined;
             config.ariaRole = 'presentation';
             config.focusable = false;
-        }
-        else {
+        } else {
             //config.useAriaElements = true;
             //config.ariaLabel = htmlEncode(me.headerAriaLabel);
             //config.headerSelectText = htmlEncode(me.headerSelectText);
@@ -352,8 +355,7 @@ Ext.define('SU.grid.feature.CheckboxGrouping', {
         }
     },
 
-    changeViewSelection: function (selModel, records) {
-    },
+    changeViewSelection: function (selModel, records) {},
 
     onViewSelect: function (selModel, record) {
         var me = this;

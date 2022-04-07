@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "classic",
+        "target": "es5",
+        "jsx": "preserve",
+        "strictFunctionTypes": true
+    },
+    "include": ["ext"],
+    "exclude": [
+        "build",
+        "lib",
+        "archive",
+        "ext",
+        "deploy",
+        "docs",
+        "resources",
+        "packages/remote",
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

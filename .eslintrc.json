@@ -1,11 +1,10 @@
 {
     "env": {
-        "browser": true,
-        "es6": true
+        "browser": true
     },
     "globals": {
         "Ext": "readonly",
-        "Consts": "readonly",
+        "SU": "readonly",
         "Routes": "readonly",
         "Api": "readonly",
         "Ajax": "readonly",
@@ -13,7 +12,8 @@
         "LanguageCodes": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2015
+        "ecmaVersion": 5,
+        "sourceType": "script"
     },
     "root": true,
     "plugins": [
@@ -22,19 +22,18 @@
     ],
     "extends": [
         "plugin:@sencha/extjs/recommended",
-        "airbnb-base",
-        "plugin:prettier/recommended",
-        "plugin:jsdoc/recommended"
+        "plugin:prettier/recommended"
     ],
     "settings": {
         "extjs": {
             "toolkit": "classic",
-            "version": "latest"
+            "version": "es5"
         }
     },
     "rules": {
         "max-len": "off",
         "no-param-reassign": "warn",
-        "prefer-rest-params": "off"
+        "prefer-rest-params": "off",
+        "@sencha/extjs/no-existing-method-override": "off"
     }
 }

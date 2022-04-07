@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.en.field.Date', {
     override: 'Ext.field.Date',
 

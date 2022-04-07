@@ -1,4 +1,4 @@
-﻿//
+//
 // Definitions of enums referenced in documentation.
 //
 

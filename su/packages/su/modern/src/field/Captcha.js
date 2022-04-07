@@ -1,17 +1,17 @@
-﻿/**
+/**
  * CaptchaField для Google reCAPTCHA v2
- * 
+ *
  * Для подключения добавить в файл `app.json` в секцию js
- * 
+ *
  *     {
  *         "path": 'https://www.google.com/recaptcha/api.js?render=explicit',
  *         "remote": true
- *     } 
- * 
- * Чтобы начать работу, вам нужно будет зарегистрировать 
- * свой сайт {@link https://www.google.com/recaptcha/admin/create на этой странице}, 
+ *     }
+ *
+ * Чтобы начать работу, вам нужно будет зарегистрировать
+ * свой сайт {@link https://www.google.com/recaptcha/admin/create на этой странице},
  * выбрав опции `reCAPTCHA v2` и `Флажок "Я не робот"`.
- * 
+ *
  */
 Ext.define('SU.field.Captcha', {
     extend: 'Ext.field.Field',
@@ -19,7 +19,6 @@ Ext.define('SU.field.Captcha', {
     xtype: 'captchafield',
 
     config: {
-
         /**
          * @cfg {String} siteKey (required)
          * ключ в HTML-коде, который ваш сайт передает на устройства пользователей
@@ -30,7 +29,7 @@ Ext.define('SU.field.Captcha', {
          * @cfg {String} theme
          * тема reCAPTCHA `light` или `dark`
          */
-        theme: 'dark',
+        theme: 'dark'
 
         /**
          * @cfg {String} render
@@ -48,7 +47,8 @@ Ext.define('SU.field.Captcha', {
 
     initialize: function () {
         var me = this,
-            po, s;
+            po,
+            s;
 
         me.callParent(arguments);
 
@@ -57,7 +57,6 @@ Ext.define('SU.field.Captcha', {
         } else {
             me.addCls('x-grecaptcha-error');
         }
-
     },
 
     getBodyTemplate: function () {
@@ -81,16 +80,22 @@ Ext.define('SU.field.Captcha', {
         var me = this;
 
         grecaptcha.render(me.captchaElement.id, {
-            'callback': function (response) { me.verifyCallback.call(me, response) },
-            'expired-callback': function () { me.onRecaptchaExpired.call(me) },
-            'error-callback': function () { me.onErrorCallback.call(me) }
+            callback: function (response) {
+                me.verifyCallback.call(me, response);
+            },
+            'expired-callback': function () {
+                me.onRecaptchaExpired.call(me);
+            },
+            'error-callback': function () {
+                me.onErrorCallback.call(me);
+            }
         });
     },
 
     verifyCallback: function (response) {
         var me = this;
 
-        me.isCaptchaValid = (response.length > 0);
+        me.isCaptchaValid = response.length > 0;
         if (me.isCaptchaValid) {
             me.setValue(response);
             me.fireEvent('recaptchavalid', me);
@@ -120,5 +125,4 @@ Ext.define('SU.field.Captcha', {
         var me = this;
         return me.isDisabled() || me.isCaptchaValid;
     }
-
 });

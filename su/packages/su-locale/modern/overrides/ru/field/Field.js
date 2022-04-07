@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.ru.field.Field', {
     override: 'Ext.field.Field',
 
@@ -6,5 +5,4 @@ Ext.define('SU.locale.ru.field.Field', {
         requiredMessage: 'Это поле обязательно к заполнению',
         validationMessage: 'Неправильный формат'
     }
-
 });

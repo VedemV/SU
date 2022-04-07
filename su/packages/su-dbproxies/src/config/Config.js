@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 Ext.define('SU.dbproxies.config.Config', {
     singleton: true,
@@ -8,5 +8,4 @@ Ext.define('SU.dbproxies.config.Config', {
     dbDescription: 'extjs',
     dbVersion: '1.0',
     dbSize: 5000000
-    
 });

@@ -1,5 +1,4 @@
-﻿
-Ext.define('SU.locale.en.dataview.EmptyText', {
+﻿Ext.define('SU.locale.en.dataview.EmptyText', {
     override: 'Ext.dataview.EmptyText',
 
     config: {

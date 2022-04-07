@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 Ext.define('SU.field.Text', {
     override: 'Ext.field.Text',
@@ -30,8 +30,7 @@ Ext.define('SU.field.Text', {
     },
 
     filterKeys: function (e) {
-
-        if (e.ctrlKey && !e.altKey || e.isSpecialKey()) return;
+        if ((e.ctrlKey && !e.altKey) || e.isSpecialKey()) return;
 
         var charCode = String.fromCharCode(e.getCharCode()),
             raw = this.getValue() || '',

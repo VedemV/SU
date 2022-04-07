@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.en.field.Field', {
     override: 'Ext.field.Field',
 
@@ -6,5 +5,4 @@ Ext.define('SU.locale.en.field.Field', {
         requiredMessage: 'This field is required',
         validationMessage: 'Is in the wrong format'
     }
-
 });

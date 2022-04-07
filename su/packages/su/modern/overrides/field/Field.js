@@ -1,18 +1,15 @@
 ﻿/**
- * 
+ *
  */
 Ext.define('SU.field.Field', {
     override: 'Ext.field.Field',
 
-    requres: [
-        'Ext.Sheet'
-    ],
+    requres: ['Ext.Sheet'],
 
     config: {
-
         /**
          * @cfg {String} helperIconCls
-         * 
+         *
          */
         helperIconCls: 'x-mi mi-help-circle-outline',
 
@@ -87,9 +84,7 @@ Ext.define('SU.field.Field', {
     },
 
     updateHelperIconCls: function (value, oldValue) {
-
         if (this.labelHelperElement) {
-
             if (oldValue) {
                 this.labelHelperElement.removeCls(oldValue);
             }
@@ -133,20 +128,21 @@ Ext.define('SU.field.Field', {
 
     // @hide
     privates: {
-
         // @private
         getHelperSheet: function () {
             var me = this,
                 config = Ext.applyIf(me.getHelperConfig() || {}, me.defaultHelperConfig || {});
 
-            return me.helperSheet || (me.helperSheet = Ext.factory(
-                Ext.applyIf(config, {
-                    title: me.getHelperTitle(),
-                    html: me.getHelperText()
-                }),
-                Ext.Sheet
-            ));
+            return (
+                me.helperSheet ||
+                (me.helperSheet = Ext.factory(
+                    Ext.applyIf(config, {
+                        title: me.getHelperTitle(),
+                        html: me.getHelperText()
+                    }),
+                    Ext.Sheet
+                ))
+            );
         }
     }
-
 });

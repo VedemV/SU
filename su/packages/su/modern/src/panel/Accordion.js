@@ -1,13 +1,13 @@
-﻿/**
- * 
+/**
+ *
  * Расширение панели для управления дочерними панелями в стиле аккордеона.
- * 
+ *
  * _Примечание:_ Это расширение будет применено только к элементам типа `Ext.Panel` и его подклассам.
  * Все остальные элементы будут работать как обычно.
- * 
+ *
  * По умолчанию только одна дочерняя панель может быть в развернутом виде.
- * 
- * 
+ *
+ *
  *     @example
  *     Ext.create({
  *         xtype: 'accordion',
@@ -37,8 +37,8 @@
  *     });
  *
  * Для включения множественного режима установите #collapseByDefault в `false`.
- * 
- * 
+ *
+ *
  *     @example
  *     Ext.create({
  *         xtype: 'accordion',
@@ -73,26 +73,21 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
     if (Ext.versions.extjs.gtEq('7.0')) {
         return {
             extend: 'Ext.panel.Accordion'
-        }
+        };
     }
 
     return {
         extend: 'Ext.Panel',
         xtype: 'accordion',
 
-        mixins: [
-            'Ext.mixin.Bufferable'
-        ],
+        mixins: ['Ext.mixin.Bufferable'],
 
-        requires: [
-            'Ext.layout.VBox',
-            'Ext.panel.Collapser'
-        ],
+        requires: ['Ext.layout.VBox', 'Ext.panel.Collapser'],
 
         config: {
             /**
              * @cfg {Boolean} collapseByDefault
-             * Флаг, указывающий, должны ли сворачиваться все оставшиеся панели 
+             * Флаг, указывающий, должны ли сворачиваться все оставшиеся панели
              * при открытии одной из них
              */
             collapseByDefault: true,
@@ -160,7 +155,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
 
             me.getRenderTarget().addCls(me.accordionCls);
             me.syncStateNow();
-
         },
 
         onItemAdd: function (item, index) {
@@ -174,13 +168,12 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                 collapsible = item.getCollapsible();
 
                 if (collapsible !== false) {
-
                     // Ставим обработчик клика на заголовке
                     if (me.getHeaderPanelClickable()) {
                         me.bindHeaderEvent(item, true);
                     }
 
-                    // ui на панель 
+                    // ui на панель
                     if (!item.getUi() && !initialItemConfig.ui) {
                         item.$accordionUI = me;
                         item.setUi(me.getDefaultPanelUI());
@@ -206,7 +199,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
 
                     // Посчитаем приоритеты
                 }
-
             }
 
             me.callParent([item, index]);
@@ -226,7 +218,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                 collapsible = item.getCollapsible();
 
                 if (collapsible !== false) {
-
                     // Снимаем обработчик клика на заголовке
                     if (me.getHeaderPanelClickable()) {
                         me.bindHeaderEvent(item, false);
@@ -250,19 +241,16 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             panels.forEach(function (item) {
                 me.bindHeaderEvent(item, value);
             });
-
-
         },
 
         // @ignore
         privates: {
-
             // Установка/снятие обработчика клика на заголовке
             bindHeaderEvent: function (panel, set) {
                 var me = this,
                     header = panel.getHeader();
 
-                    fn = set ? 'on' : 'un';
+                fn = set ? 'on' : 'un';
 
                 header[fn].call(header, {
                     scope: me,
@@ -272,7 +260,7 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             },
 
             /**
-             * @return {Array} 
+             * @return {Array}
              * @private
              */
             getAccordionPanels: function () {
@@ -280,7 +268,8 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                     items = me.query(me.accordionSelector),
                     expanded = [],
                     n = items.length,
-                    i, item;
+                    i,
+                    item;
 
                 //items.sort(me._sortFn);
 
@@ -318,7 +307,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                 index = panels.indexOf(panel);
 
                 if (panels.$expanded.length === 1) {
-
                     if (index === panels.length - 1) {
                         panel = panels[index - 1];
                     } else {
@@ -327,7 +315,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
 
                     panel && panel.expand();
                     return false;
-
                 }
 
                 // Включаем индикатор процесса анимации
@@ -335,7 +322,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             },
 
             onPanelBeforeExpand: function (panel) {
-
                 // В процессе анимации никаких действий, пока не закончится
                 if (panel.$animating) return false;
 
@@ -344,24 +330,21 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             },
 
             onPanelCollapse: function (panel) {
-                delete (panel.$animating);
+                delete panel.$animating;
             },
 
             onPanelExpand: function (panel) {
                 var me = this;
 
-                delete (panel.$animating);
+                delete panel.$animating;
 
                 if (me.getCollapseByDefault()) {
-
                     me.getAccordionPanels().forEach(function (child) {
                         if (panel !== child) {
                             child.collapse();
                         }
                     });
-
                 }
-
             },
 
             onBeforePanelHiddenChange: function (panel, hidden) {
@@ -394,7 +377,7 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             },
 
             /**
-             * 
+             *
              * @param {Ext.panel.Panel} panel
              * @param {Boolean} collapsed
              * @private
@@ -417,7 +400,7 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
             },
 
             /**
-             * 
+             *
              * @param {Object} info
              * @private
              */
@@ -436,11 +419,10 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                 } else {
                     // оставим пока как есть
                 }
-
             },
 
             /**
-             * 
+             *
              * @param {Object} info
              * @private
              */
@@ -448,8 +430,6 @@ Ext.define('SU.panel.Accordion', function (Accordion) {
                 this.cancelSyncState();
                 this.doSyncState(info);
             }
-
         }
-    }
-
+    };
 });

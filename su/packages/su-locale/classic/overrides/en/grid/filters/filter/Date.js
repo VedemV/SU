@@ -1,6 +1,5 @@
-
-Ext.define("SU.locale.en.grid.filters.filter.Date", {
-    override: "Ext.grid.filters.filter.Date",
+Ext.define('SU.locale.en.grid.filters.filter.Date', {
+    override: 'Ext.grid.filters.filter.Date',
     fields: {
         lt: { text: 'Before' },
         gt: { text: 'After' },
@@ -9,4 +8,3 @@ Ext.define("SU.locale.en.grid.filters.filter.Date", {
     // Defaults to Ext.Date.defaultFormat
     dateFormat: null
 });
-

@@ -1,10 +1,10 @@
-﻿/**
+/**
  * Заплатка ошибки "Uncaught TypeError: Cannot read property 'isWidget' of null"
  * [BUG EXTJS-25880](https://www.sencha.com/forum/showthread.php?347730-Issue-on-focus-when-dataview-has-items-but-no-records)
  */
 Ext.define('SU.dataview.Abstract', {
     override: 'Ext.dataview.Abstract',
-    
+
     onInnerFocusEnter: function (e) {
         var me = this,
             navigationModel = me.getNavigationModel(),
@@ -35,17 +35,17 @@ Ext.define('SU.dataview.Abstract', {
 
         itemCount = me.getFastItems().length;
 
-        if (itemCount && focusPosition) { // было if (itemCount) {
+        if (itemCount && focusPosition) {
+            // было if (itemCount) {
             if (focusPosition.isWidget) {
                 focusPosition = focusPosition.getFocusEl() || focusPosition.el;
             }
 
             if (focusPosition.sourceElement) {
-                navigationModel.setLocation(focusPosition,
-                    {
-                        event: e,
-                        navigate: false
-                    });
+                navigationModel.setLocation(focusPosition, {
+                    event: e,
+                    navigate: false
+                });
             }
         }
 

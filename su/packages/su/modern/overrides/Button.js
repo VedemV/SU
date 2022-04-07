@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Добавлена обработка toggleGroup
  */
 Ext.define('SU.Button', {
@@ -44,5 +44,4 @@ Ext.define('SU.Button', {
             });
         }
     }
-
 });

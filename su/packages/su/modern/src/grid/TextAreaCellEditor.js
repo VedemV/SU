@@ -1,4 +1,4 @@
-﻿/**
+/**
  *
  */
 Ext.define('SU.grid.TextAreaCellEditor', {
@@ -20,8 +20,7 @@ Ext.define('SU.grid.TextAreaCellEditor', {
                 var pos = withIns.length;
                 el.value = withIns + el.value.substring(el.selectionEnd, el.value.length);
                 el.setSelectionRange(pos, pos);
-            }
-            else if (document.selection) {
+            } else if (document.selection) {
                 document.selection.createRange().text = '    ';
             }
             return false;
@@ -34,5 +33,4 @@ Ext.define('SU.grid.TextAreaCellEditor', {
 
         me.callParent(arguments);
     }
-
 });

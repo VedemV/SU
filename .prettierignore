@@ -1,5 +1,9 @@
 build
 lib
+archive
+ext
+deploy
+docs
 node_modules
 resources
 packages/remote

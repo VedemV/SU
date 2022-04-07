@@ -21,31 +21,29 @@
  * Создание модуля
  */
 Ext.define('SU.utils.ShowEvents', {
-	requires: ['Ext.util.Observable'],
+    requires: ['Ext.util.Observable'],
 
-	mixinConfig: {
-		id: 'showevents'
-	},
+    mixinConfig: {
+        id: 'showevents'
+    },
 
-	/**
-	 * `true` запрещает вывод сообщений
-	 *
-	 * @property {Boolean}
-	 */
-	disabledShowEvents: false,
+    /**
+     * `true` запрещает вывод сообщений
+     *
+     * @property {Boolean}
+     */
+    disabledShowEvents: false,
 
-	//
-	onClassMixedIn: function (cls) {
-		cls.prototype.fireEvent = function () {
-			var me = this;
-			if( !me.disabledShowEvents ){
-				console.log('[SHOW EVENTS]', me.$className, arguments[0], arguments);
-			}
-			return Ext.util.Observable.prototype.fireEvent.apply(this, arguments);
-		};
-	}
+    //
+    onClassMixedIn: function (cls) {
+        cls.prototype.fireEvent = function () {
+            var me = this;
+            if (!me.disabledShowEvents) {
+                console.log('[SHOW EVENTS]', me.$className, arguments[0], arguments);
+            }
+            return Ext.util.Observable.prototype.fireEvent.apply(this, arguments);
+        };
+    }
 });
 
 // </debug>
-
-

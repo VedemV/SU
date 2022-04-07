@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.ru.panel.Date', {
     override: 'Ext.panel.Date',
 

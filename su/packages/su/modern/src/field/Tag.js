@@ -1,7 +1,7 @@
-﻿/**
+/**
  * Поле выбора нескольких значений из списка.
- * 
- *     @example 
+ *
+ *     @example
  *     var shows = Ext.create('Ext.data.Store', {
  *         fields: ['id','show'],
  *         data: [
@@ -13,7 +13,7 @@
  *             {id: 5, show: 'Star Wars: Christmas Special'}
  *         ]
  *     });
- *     
+ *
  *     Ext.create('Ext.Panel', {
  *         fullscreen: true,
  *         title: 'Sci-Fi Television',
@@ -41,10 +41,10 @@
  *             value: [1,3,5]
  *         }]
  *     });
- * 
+ *
  * @history 16.07.2019
  * Обработка #disabled, #readOnly, #editable
- * 
+ *
  * @history 30.05.2019
  * - Переработано #selected
  * - Убираем вызовы #setValue при вводе поиска
@@ -54,7 +54,7 @@
  *
  * @history 06.05.2019
  * Добавлены свойства #queryMode и #queryField
- * 
+ *
  * @history 28.08.2018
  * Выявлен глюк в мобилке с edgePicker
  * Свойство #picker выставлено в `floated`
@@ -64,10 +64,8 @@ Ext.define('SU.field.Tag', {
     alternateClassName: ['Ext.field.Tag', 'Ext.form.field.Tag'],
     xtype: 'tagfield',
 
-    requires: [
-        'Ext.picker.Picker'
-    ],
-    
+    requires: ['Ext.picker.Picker'],
+
     config: {
         /**
          * @cfg {Ext.data.Store/Object/String} store
@@ -124,7 +122,6 @@ Ext.define('SU.field.Tag', {
     picker: 'floated',
 
     listeners: {
-
         collapse: function () {
             var me = this,
                 store = me.getStore(),
@@ -133,7 +130,6 @@ Ext.define('SU.field.Tag', {
 
             inputEl.value = '';
             store.removeFilter(queryField);
-
         },
 
         keyup: {
@@ -149,7 +145,7 @@ Ext.define('SU.field.Tag', {
                 if (!e.isEvent && field.isEvent) {
                     e = field;
                 }
-                
+
                 if (!e.isEvent || e.getKey() === Ext.event.Event.ESC) {
                     return;
                 }
@@ -165,7 +161,6 @@ Ext.define('SU.field.Tag', {
                 } else {
                     store.removeFilter(queryField);
                 }
-
             },
             buffer: 200
         }
@@ -206,7 +201,6 @@ Ext.define('SU.field.Tag', {
     },
 
     updateReadOnly: function (readOnly) {
-
         this.callParent(arguments);
 
         this.removeCls('x-field-readonly');
@@ -225,31 +219,37 @@ Ext.define('SU.field.Tag', {
     createFloatedPicker: function () {
         var me = this;
 
-        return Ext.merge({
-            ownerCmp: me,
-            store: me.getStore(),
-            itemTpl: me.itemTpl ? me.itemTpl : '{' + me.getDisplayField() + '}',
-            listeners: {
-                select: me.onSelect,
-                deselect: me.onDeselect,
-                scope: me
-            }
-        }, me.getFloatedPicker());
+        return Ext.merge(
+            {
+                ownerCmp: me,
+                store: me.getStore(),
+                itemTpl: me.itemTpl ? me.itemTpl : '{' + me.getDisplayField() + '}',
+                listeners: {
+                    select: me.onSelect,
+                    deselect: me.onDeselect,
+                    scope: me
+                }
+            },
+            me.getFloatedPicker()
+        );
     },
 
     createEdgePicker: function () {
         var me = this;
 
-        return Ext.merge({
-            ownerCmp: me,
-            store: me.getStore(),
-            itemTpl: me.itemTpl ? me.itemTpl : '{' + me.getDisplayField() + '}',
-            listeners: {
-                select: me.onSelect,
-                deselect: me.onDeselect,
-                scope: me
-            }
-        }, me.getEdgePicker());
+        return Ext.merge(
+            {
+                ownerCmp: me,
+                store: me.getStore(),
+                itemTpl: me.itemTpl ? me.itemTpl : '{' + me.getDisplayField() + '}',
+                listeners: {
+                    select: me.onSelect,
+                    deselect: me.onDeselect,
+                    scope: me
+                }
+            },
+            me.getEdgePicker()
+        );
     },
 
     getValue: function () {
@@ -275,7 +275,6 @@ Ext.define('SU.field.Tag', {
         }
 
         me.onDeselect(null, values);
-
     },
 
     expand: function () {
@@ -295,7 +294,8 @@ Ext.define('SU.field.Tag', {
             inputEl = me.inputElement.dom,
             value = inputEl.value,
             inputMask = me.getInputMask(),
-            parseErrors, oldValue;
+            parseErrors,
+            oldValue;
 
         if (inputMask) {
             inputMask.processAutocomplete(this, value);
@@ -371,10 +371,12 @@ Ext.define('SU.field.Tag', {
             value = Ext.Array.from(value);
         }
 
-        var i = 0, len = value.length, config, f;
+        var i = 0,
+            len = value.length,
+            config,
+            f;
 
         if (queryMode === 'local' && store.isLoaded()) {
-
             // Для локального фильтра и загруженного стора
             // метим записи по значениям в value
             while (i < len) {
@@ -386,9 +388,7 @@ Ext.define('SU.field.Tag', {
             if (selection.length) {
                 me.getPicker().select(selection);
             }
-
         } else {
-
             // при отсутствии данных в сторе
             // принудительно загружаем нужные записи
             while (i < len) {
@@ -398,12 +398,11 @@ Ext.define('SU.field.Tag', {
                 i++;
             }
 
-            Ext.Promise.all(promises)
-                .then(function (selection) {
-                    if (selection.length) {
-                        me.getPicker().select(selection);
-                    }
-                });
+            Ext.Promise.all(promises).then(function (selection) {
+                if (selection.length) {
+                    me.getPicker().select(selection);
+                }
+            });
         }
 
         if (!me.expanded) {
@@ -412,7 +411,7 @@ Ext.define('SU.field.Tag', {
     },
 
     // Do nothing!
-    updateInputValue: function () { },
+    updateInputValue: function () {},
 
     validate: function (skipLazy) {
         var me = this,
@@ -428,7 +427,6 @@ Ext.define('SU.field.Tag', {
         }
 
         if (!me.getDisabled() || me.getValidateDisabled()) {
-
             errors = [];
 
             //if (me.isInputField && !me.isSelectField) {
@@ -445,17 +443,13 @@ Ext.define('SU.field.Tag', {
             //}
 
             if (empty && me.getRequired()) {
-
                 errors.push(me.getRequiredMessage());
-
             } else if (!errors.length) {
-
                 if (!empty) {
                     value = me.parseValue(value, errors);
                 }
 
                 if (!errors.length) {
-
                     field = me._validationField;
                     record = me._validationRecord;
 
@@ -466,7 +460,6 @@ Ext.define('SU.field.Tag', {
                     if (!empty) {
                         me.doValidate(value, errors, skipLazy);
                     }
-
                 }
             }
             if (errors.length) {
@@ -479,7 +472,7 @@ Ext.define('SU.field.Tag', {
         return true;
     },
 
-    doDestroy: function() {
+    doDestroy: function () {
         this._selected = {};
         this.destroyMembers('picker', 'hideEventListeners', 'touchListeners', 'focusTrap');
         this.callParent();
@@ -487,7 +480,6 @@ Ext.define('SU.field.Tag', {
 
     //@hide
     privates: {
-
         getSelected: function () {
             return this._selected || (this._selected = {});
         },
@@ -509,7 +501,6 @@ Ext.define('SU.field.Tag', {
                 len = records.length;
 
             while (i < len) {
-
                 // Не добавлять выделение, если оно уже выбрано
                 if (selected[records[i].get(field)]) {
                     break;
@@ -561,18 +552,19 @@ Ext.define('SU.field.Tag', {
 
             el.id = id;
             el.className = Ext.baseCSSPrefix + 'tag';
-            el.innerHTML = tag.get(me.getDisplayField()) + ' <span class="x-tag-tool x-fa fa-close" aria-hidden="true">&nbsp;</span>';
+            el.innerHTML =
+                tag.get(me.getDisplayField()) +
+                ' <span class="x-tag-tool x-fa fa-close" aria-hidden="true">&nbsp;</span>';
             el.setAttribute('tagFieldSpan', true);
 
-            el.querySelector('span')
-                .addEventListener('click',
-                    Ext.bind(function () {
-                        this.getPicker().getSelectable().deselect([tag]);
-                        this.getPicker().onItemDeselect([tag]);
-                        //this.getPicker().setItemSelection([tag], false);
-                    },
-                        me)
-                );
+            el.querySelector('span').addEventListener(
+                'click',
+                Ext.bind(function () {
+                    this.getPicker().getSelectable().deselect([tag]);
+                    this.getPicker().onItemDeselect([tag]);
+                    //this.getPicker().setItemSelection([tag], false);
+                }, me)
+            );
 
             me.beforeInputElement.append(el);
 
@@ -599,7 +591,8 @@ Ext.define('SU.field.Tag', {
 
         removeAllTags: function () {
             var items = this.beforeInputElement.query('span[tagFieldSpan=true]'),
-                i = items.length, el;
+                i = items.length,
+                el;
 
             while (i--) {
                 el = this.beforeInputElement.down('#' + this.id + '-tag-' + items[i].get(this.getValueField()));
@@ -619,7 +612,6 @@ Ext.define('SU.field.Tag', {
             me._animPlaceholderLabel = animate;
 
             if (me.rendered) {
-
                 if (Object.keys(selected).length > 0) {
                     inside = false;
                 } else {

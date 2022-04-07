@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.ru.field.Number', {
     override: 'Ext.field.Number',
 

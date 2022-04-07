@@ -1,6 +1,5 @@
-
-Ext.define("SU.locale.en.dataview.pullrefresh.Bar", {
-    override: "Ext.dataview.pullrefresh.Bar",
+Ext.define('SU.locale.en.dataview.pullrefresh.Bar', {
+    override: 'Ext.dataview.pullrefresh.Bar',
 
     lastUpdatedDateFormat: 'm/d/Y h:iA',
     lastUpdatedText: 'Last Updated:\xA0',
@@ -8,5 +7,4 @@ Ext.define("SU.locale.en.dataview.pullrefresh.Bar", {
     loadingText: 'Loading...',
     pullText: 'Pull down to refresh...',
     releaseText: 'Release to refresh...'
-
 });

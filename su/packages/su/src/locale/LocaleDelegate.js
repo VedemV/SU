@@ -3,14 +3,12 @@
  *
  */
 Ext.define('SU.locale.LocaleDelegate', {
-    requires: [
-        'Ext.Ajax'
-    ],
+    requires: ['Ext.Ajax'],
 
     /**
      * Метод, вызываемый при успешной загрузке файла языкового пакета.
      * @type {Function}
-	 * @param {String} responseText Строка, содержащая текст ответа.
+     * @param {String} responseText Строка, содержащая текст ответа.
      * @private
      */
     success: undefined,
@@ -18,7 +16,7 @@ Ext.define('SU.locale.LocaleDelegate', {
     /**
      * Метод, вызываемый при проблемах в загрузке файла языкового пакета.
      * @type {Function}
-	 * @param {Object} response Объект XMLHttpRequest, содержащий данные ответа.
+     * @param {Object} response Объект XMLHttpRequest, содержащий данные ответа.
      * @private
      */
     failure: undefined,
@@ -35,7 +33,7 @@ Ext.define('SU.locale.LocaleDelegate', {
      * @param {Function} failure
      * @param {Object} scope
      */
-    constructor: function(success, failure, scope) {
+    constructor: function (success, failure, scope) {
         this.callParent(arguments);
 
         this.success = success;
@@ -48,9 +46,8 @@ Ext.define('SU.locale.LocaleDelegate', {
      *
      * @param {String} url - Адрес файла для загрузки
      */
-    loadPropertiesFile: function(url) {
-        if(!this.success || !this.scope)
-            return;
+    loadPropertiesFile: function (url) {
+        if (!this.success || !this.scope) return;
 
         Ext.Ajax.request({
             url: url,
@@ -66,8 +63,8 @@ Ext.define('SU.locale.LocaleDelegate', {
      * @private
      * @param {Object} response
      */
-    ajaxSuccess: function(response) {
-        this.success.call( this.scope, response.responseText );
+    ajaxSuccess: function (response) {
+        this.success.call(this.scope, response.responseText);
     },
 
     /**
@@ -76,7 +73,7 @@ Ext.define('SU.locale.LocaleDelegate', {
      * @private
      * @param {Object} response
      */
-    ajaxFailure: function(response) {
-		this.failure.call( this.scope, response );
+    ajaxFailure: function (response) {
+        this.failure.call(this.scope, response);
     }
 });

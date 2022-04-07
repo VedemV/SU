@@ -1,9 +1,7 @@
-
 Ext.define('SU.locale.ru.field.Text', {
     override: 'Ext.field.Text',
 
     config: {
-        badFormatMessage: 'Значение не соответствует требуемому формату'
+        badFormatMessage: 'Р—РЅР°С‡РµРЅРёРµ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ С‚СЂРµР±СѓРµРјРѕРјСѓ С„РѕСЂРјР°С‚Сѓ'
     }
-
 });

@@ -1,6 +1,4 @@
-
 Ext.onReady(function () {
-
     if (Ext.util && Ext.util.Format) {
         Ext.apply(Ext.util.Format, {
             thousandSeparator: ',',

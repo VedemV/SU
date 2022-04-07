@@ -3,23 +3,20 @@
  */
 Ext.define('SU.locale.store.LocalesStore', {
     extend: 'Ext.data.Store',
-	alias: 'store.locales',
+    alias: 'store.locales',
 
-    requires: [
-        'Ext.data.reader.Json',
-		'SU.locale.model.LocaleModel'
-    ],
+    requires: ['Ext.data.reader.Json', 'SU.locale.model.LocaleModel'],
 
-	config: {
-//		storeId: 'localesStore',
-		model: 'SU.locale.model.LocaleModel',
+    config: {
+        //		storeId: 'localesStore',
+        model: 'SU.locale.model.LocaleModel',
 
-		proxy: {
-			type: 'memory',
-			reader: {
-				type: 'json',
-				rootProperty: ''
-			}
-		}
-	}
+        proxy: {
+            type: 'memory',
+            reader: {
+                type: 'json',
+                rootProperty: ''
+            }
+        }
+    }
 });

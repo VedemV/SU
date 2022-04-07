@@ -1,14 +1,14 @@
-﻿/**
- * 
+/**
+ *
  * Example usage:
- * 
+ *
  *     @example
- *     
- *     Ext.create({ 
- *         xtype: 'container', 
- *         fullscreen: true, 
+ *
+ *     Ext.create({
+ *         xtype: 'container',
+ *         fullscreen: true,
  *         padding: 10,
- *     
+ *
  *         items: [
  *             {
  *                 xtype: 'container',
@@ -55,12 +55,12 @@
  *                     }
  *                 ]
  *             }
- *         ], 
- *         renderTo: Ext.getBody() 
+ *         ],
+ *         renderTo: Ext.getBody()
  *     });
- *     
- *   
- *   
+ *
+ *
+ *
  */
 Ext.define('SU.widgets.Avatar', {
     extend: 'Ext.Widget',
@@ -68,7 +68,6 @@ Ext.define('SU.widgets.Avatar', {
     alias: 'widget.avatar',
 
     config: {
-
         /**
          * @cfg {Number} proportions
          * Высота и ширина
@@ -149,5 +148,4 @@ Ext.define('SU.widgets.Avatar', {
         me.updateUserName(me.getUserName());
         //}
     }
-
 });

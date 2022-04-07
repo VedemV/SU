@@ -1,4 +1,3 @@
-
 Ext.define('SU.locale.ru.Panel', {
     override: 'Ext.Panel',
 

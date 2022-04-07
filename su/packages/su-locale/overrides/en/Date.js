@@ -1,12 +1,23 @@
-
 Ext.onReady(function () {
-
     if (Ext.data && Ext.data.Types) {
         Ext.data.Types.stripRe = /[\$,%]/g;
     }
 
     if (Ext.Date) {
-        Ext.Date.monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        Ext.Date.monthNames = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
 
         Ext.Date.getShortMonthName = function (month) {
             return Ext.Date.monthNames[month].substring(0, 3);
@@ -42,17 +53,15 @@ Ext.onReady(function () {
             return Ext.Date.monthNumbers[name.substring(0, 1).toUpperCase() + name.substring(1, 3).toLowerCase()];
         };
 
-        Ext.Date.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        Ext.Date.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Ext.Date.getShortDayName = function (day) {
             return Ext.Date.dayNames[day].substring(0, 3);
         };
 
-        Ext.Date.parseCodes.S.s = "(?:st|nd|rd|th)";
+        Ext.Date.parseCodes.S.s = '(?:st|nd|rd|th)';
 
         Ext.Date.firstDayOfWeek = 0;
         Ext.Date.weekendDays = [6, 0];
     }
-
 });
-

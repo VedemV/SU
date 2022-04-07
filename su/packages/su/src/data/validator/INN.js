@@ -1,5 +1,5 @@
-﻿/**
- * 
+/**
+ *
  */
 Ext.define('SU.data.validator.INN', {
     extend: 'Ext.data.validator.Validator',
@@ -12,8 +12,6 @@ Ext.define('SU.data.validator.INN', {
     // ИНН - TIN / ITN
     // КПП - IEC
     // ОГРН - PSRN
-
-    
 
     config: {
         /**
@@ -47,30 +45,58 @@ Ext.define('SU.data.validator.INN', {
 
         // проверка по контрольным цифрам
         if (value.length === 10) {
-
-            var dgt10 = String(((
-                2 * value[0] + 4 * value[1] + 10 * value[2] +
-                3 * value[3] + 5 * value[4] + 9 * value[5] +
-                4 * value[6] + 6 * value[7] + 8 * value[8]) % 11) % 10);
+            var dgt10 = String(
+                ((2 * value[0] +
+                    4 * value[1] +
+                    10 * value[2] +
+                    3 * value[3] +
+                    5 * value[4] +
+                    9 * value[5] +
+                    4 * value[6] +
+                    6 * value[7] +
+                    8 * value[8]) %
+                    11) %
+                    10
+            );
             console.log(dgt10);
             return value[9] === dgt10 ? true : 'Введённый ИНН не прошёл проверку по контрольным цифрам';
         }
 
         if (value.length === 12) {
+            var dgt11 = String(
+                ((7 * value[0] +
+                    2 * value[1] +
+                    4 * value[2] +
+                    10 * value[3] +
+                    3 * value[4] +
+                    5 * value[5] +
+                    9 * value[6] +
+                    4 * value[7] +
+                    6 * value[8] +
+                    8 * value[9]) %
+                    11) %
+                    10
+            );
 
-            var dgt11 = String(((
-                7 * value[0] + 2 * value[1] + 4 * value[2] +
-                10 * value[3] + 3 * value[4] + 5 * value[5] +
-                9 * value[6] + 4 * value[7] + 6 * value[8] +
-                8 * value[9]) % 11) % 10);
-
-            var dgt12 = String(((
-                3 * value[0] + 7 * value[1] + 2 * value[2] +
-                4 * value[3] + 10 * value[4] + 3 * value[5] +
-                5 * value[6] + 9 * value[7] + 4 * value[8] +
-                6 * value[9] + 8 * value[10]) % 11) % 10);
+            var dgt12 = String(
+                ((3 * value[0] +
+                    7 * value[1] +
+                    2 * value[2] +
+                    4 * value[3] +
+                    10 * value[4] +
+                    3 * value[5] +
+                    5 * value[6] +
+                    9 * value[7] +
+                    4 * value[8] +
+                    6 * value[9] +
+                    8 * value[10]) %
+                    11) %
+                    10
+            );
             console.log(dgt11, dgt12);
-            return value[10] === dgt11 && value[11] === dgt12 ? true : 'Введённый ИНН не прошёл проверку по контрольным цифрам';
+            return value[10] === dgt11 && value[11] === dgt12
+                ? true
+                : 'Введённый ИНН не прошёл проверку по контрольным цифрам';
         }
     },
 
@@ -100,5 +126,4 @@ Ext.define('SU.data.validator.INN', {
         }
         return result;
     }
-
 });

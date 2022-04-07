@@ -16,13 +16,12 @@
 Ext.define('SU.locale.model.LocaleModel', {
     extend: 'Ext.data.Model',
 
-	config:{
-		fields: [
-			{name: 'id', type: 'string'},
-			{name: 'label', type: 'string'},
-			{name: 'url', type: 'string'},
-			{name: 'propertiesClass', type: 'string'}
-		]
-	}
-
+    config: {
+        fields: [
+            { name: 'id', type: 'string' },
+            { name: 'label', type: 'string' },
+            { name: 'url', type: 'string' },
+            { name: 'propertiesClass', type: 'string' }
+        ]
+    }
 });

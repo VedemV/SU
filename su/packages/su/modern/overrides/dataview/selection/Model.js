@@ -1,13 +1,13 @@
-﻿/**
+/**
  * @inheritdoc
  * @localdoc
  * Лечилки в режиме `multy` выбора
- * 
+ *
  * - для утерянного события `selectionchange` при #deselect
- * [BUG EXTJS-16164](https://www.sencha.com/forum/showthread.php?295764) 
- * 
+ * [BUG EXTJS-16164](https://www.sencha.com/forum/showthread.php?295764)
+ *
  * - введен запрет на изменеие выбора при простом перемещении
- * указателя текущей записи 
+ * указателя текущей записи
  *
  */
 Ext.define('SU.dataview.selection.Model', {
@@ -24,7 +24,7 @@ Ext.define('SU.dataview.selection.Model', {
             me.selectRange(start, record, ctrl);
         } else {
             //запрет на выбор при перемещении указателя
-            if(~[33, 34, 35, 36, 37, 38, 39, 40].indexOf(key) && !shift && !ctrl) return;
+            if (~[33, 34, 35, 36, 37, 38, 39, 40].indexOf(key) && !shift && !ctrl) return;
 
             //было
             //me[isSelected ? 'deselect' : 'select'](record, true);

@@ -1,5 +1,4 @@
-﻿
-Ext.define('SU.locale.en.ErrorDialog', {
+﻿Ext.define('SU.locale.en.ErrorDialog', {
     override: 'SU.ErrorDialog',
 
     textOk: 'Ok',

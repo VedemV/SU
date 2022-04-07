@@ -1,6 +1,4 @@
-
-Ext.define("SU.locale.en.view.MultiSelectorSearch", {
+Ext.define('SU.locale.en.view.MultiSelectorSearch', {
     override: 'Ext.view.MultiSelectorSearch',
     searchText: 'Search...'
 });
-

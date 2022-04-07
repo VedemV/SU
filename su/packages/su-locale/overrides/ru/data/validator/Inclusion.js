@@ -1,7 +1,6 @@
-
-Ext.define("SU.locale.ru.data.validator.Inclusion", {
-    override: "Ext.data.validator.Inclusion",
+Ext.define('SU.locale.ru.data.validator.Inclusion', {
+    override: 'Ext.data.validator.Inclusion',
     config: {
-        message: "Нет в списке допустимых значений"
+        message: 'Нет в списке допустимых значений'
     }
 });

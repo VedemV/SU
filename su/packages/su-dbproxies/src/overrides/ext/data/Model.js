@@ -1,13 +1,11 @@
 /**
- * 
+ *
  */
 Ext.define('SU.dbproxies.overrides.ext.data.Model', {
     override: 'Ext.data.Model',
-    
-    inheritableStatics: {
 
-        getProxy: function() {
-            
+    inheritableStatics: {
+        getProxy: function () {
             var me = this,
                 proxy = me.proxy,
                 defaultProxy = me.defaultProxy,
@@ -27,11 +25,11 @@ Ext.define('SU.dbproxies.overrides.ext.data.Model', {
                             type: proxy
                         };
                     }
-                    
+
                     if (proxy && proxy.type === 'dynamic') {
                         proxy = SU.dbproxies.data.proxy.Dynamic.applyDynamicProxy(proxy);
                     }
-                    
+
                     // We have nothing or a config for the proxy. Get some defaults from
                     // the Schema and smash anything we've provided over the top.
                     defaults = me.schema.constructProxy(me);
@@ -43,7 +41,5 @@ Ext.define('SU.dbproxies.overrides.ext.data.Model', {
 
             return proxy;
         }
-        
     }
-
 });

@@ -1,9 +1,7 @@
-
 Ext.define('SU.locale.en.panel.Date', {
     override: 'Ext.panel.Date',
 
     config: {
-
         dateCellFormat: {
             $value: 'j',
             cached: true

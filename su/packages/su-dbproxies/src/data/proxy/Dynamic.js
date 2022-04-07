@@ -19,9 +19,9 @@ Ext.define('SU.dbproxies.data.proxy.Dynamic', {
          */
         proxies: []
     },
-    
+
     statics: {
-        applyDynamicProxy: function(dynamicProxy) {
+        applyDynamicProxy: function (dynamicProxy) {
             var allConfig = dynamicProxy.allConfig || {},
                 proxies = dynamicProxy.proxies || [],
                 ln = proxies.length,
@@ -53,5 +53,4 @@ Ext.define('SU.dbproxies.data.proxy.Dynamic', {
             return false;
         }
     }
-    
 });

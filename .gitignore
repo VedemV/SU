@@ -6,7 +6,7 @@
 **/build
 /temp
 /.idea
-
+/.vscode
 /.sencha
 /su/packages/build
 

@@ -1,6 +1,6 @@
 /**
  * Плавающая пульсирующая кнопка с качающейся иконкой
- * 
+ *
  */
 Ext.define('SU.PulseButton', {
     extend: 'Ext.Component',
@@ -40,7 +40,7 @@ Ext.define('SU.PulseButton', {
 
     preventDefaultAction: true,
 
-    element:{
+    element: {
         tag: 'a',
         reference: 'element'
     },
@@ -48,24 +48,24 @@ Ext.define('SU.PulseButton', {
     template: [
         {
             reference: 'circleElement',
-            style: "transform-origin: center;",
-            cls: "x-pulse-circle"
+            style: 'transform-origin: center;',
+            cls: 'x-pulse-circle'
         },
         {
             reference: 'fillElement',
-            style: "transform-origin: center;",
-            cls: "x-pulse-circle-fill"
+            style: 'transform-origin: center;',
+            cls: 'x-pulse-circle-fill'
         },
         {
             reference: 'innerElement',
-            style: "transform-origin: center;",
-            cls: "x-pulse-icon-circle",
+            style: 'transform-origin: center;',
+            cls: 'x-pulse-icon-circle',
             onclick: 'return Ext.doEv(this, event);',
             children: [
                 {
                     reference: 'iconElement',
-                    style: "transform-origin: center;",
-                    cls: "x-pulse-icon-circleblock"
+                    style: 'transform-origin: center;',
+                    cls: 'x-pulse-icon-circleblock'
                 }
             ]
         }
@@ -89,7 +89,7 @@ Ext.define('SU.PulseButton', {
 
         element.setHeight(height);
         element.setStyle('lineHeight', height + 'px');
-        element.setStyle('fontSize', (height * .6) + 'px');
+        element.setStyle('fontSize', height * 0.6 + 'px');
 
         me.fillElement.setHeight(height * 1.4);
         me.innerElement.setTop((height * 1.4 - height) / 2);
@@ -132,5 +132,4 @@ Ext.define('SU.PulseButton', {
             Ext.callback(handler, me.getScope(), [me, e], 0, me);
         }
     }
-
 });
