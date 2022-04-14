@@ -1,7 +1,14 @@
+/**
+ *
+ */
 Ext.define('MIcons.model.Icon', {
     extend: 'Ext.data.Model',
 
-    schema: {
-        namespace: 'MIcons.model'
-    }
+    idProperty: 'name',
+
+    fields: [
+        { name: 'baseCls', type: 'string' },
+        { name: 'name', type: 'string' },
+        { name: 'content', type: 'string' }
+    ]
 });

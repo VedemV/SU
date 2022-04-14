@@ -1,7 +1,7 @@
 {
     "name": "pulse",
     "namespace": "Pulse",
-    "version": "1.0.1.202",
+    "version": "1.0.1.207",
     "framework": "ext",
     "toolkit": "modern",
     "theme": "theme-material",

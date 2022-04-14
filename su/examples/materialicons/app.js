@@ -7,9 +7,7 @@ Ext.application({
 
     name: 'MIcons',
 
-    requires: [
-        'MIcons.view.main.Main'
-    ],
+    requires: ['MIcons.view.main.Main'],
 
     // The name of the initial view to create.
     mainView: 'MIcons.view.main.Main'
