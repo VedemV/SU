@@ -1,24 +1,27 @@
 {
-    "name": "pulse",
-    "namespace": "Pulse",
+    "name": "FontIconsView",
+    "namespace": "FIV",
     "version": "1.0.1.208",
+    "indexHtmlPath": "index.html",
     "framework": "ext",
-    "toolkit": "modern",
-    "theme": "theme-material",
 
     "requires": [
+        "material-icons",
         "font-awesome",
+        "font-ext",
+        "font-ios",
+        "font-pictos",
         "su"
     ],
 
-    "indexHtmlPath": "index.html",
-
     "classpath": [
-        "app"
+        "app",
+        "${toolkit.name}/src"
     ],
 
     "overrides": [
-        "overrides"
+        "overrides",
+        "${toolkit.name}/overrides"
     ],
 
     "fashion": {
@@ -29,24 +32,23 @@
     },
 
     "sass": {
-        "namespace": "Pulse",
-
-        "generated": {
-            "var": "sass/save.scss",
-            "src": "sass/save"
-        },
+        "namespace": "FIV",
 
         "etc": [
-            "sass/etc/all.scss"
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/etc/all.scss"
         ],
 
         "var": [
             "sass/var/all.scss",
-            "sass/var"
+            "sass/var",
+            "${toolkit.name}/sass/var/all.scss",
+            "${toolkit.name}/sass/var"
         ],
 
         "src": [
-            "sass/src"
+            "sass/src",
+            "${toolkit.name}/sass/src"
         ]
     },
 
@@ -61,14 +63,14 @@
         {
             "path": "${build.out.css.path}",
             "bundle": true,
-            "exclude": ["fashion"]
+            "exclude": [ "fashion" ]
         }
     ],
 
-     "loader": {
-         "cache": false,
-         "cacheParam": "_dc"
-     },
+    "loader": {
+        "cache": false,
+        "cacheParam": "_dc"
+    },
 
     "production": {
         "output": {
@@ -100,6 +102,8 @@
     "bootstrap": {
         "base": "${app.dir}",
 
+        "manifest": "${build.id}.json",
+
         "microloader": "bootstrap.js",
         "css": "bootstrap.css"
     },
@@ -107,18 +111,21 @@
     "output": {
         "base": "${workspace.dir}/examples/${app.name}",
         "page": "index.html",
+        "manifest": "${build.id}.json",
+        "js": "${build.id}/app.js",
+        "css": "${app.output.resources.path}/style.css",
         "appCache": {
             "enable": false
         },
         "resources": {
-            "path": "resources",
+            "path": "${build.id}/resources",
             "shared": "../resources"
         }
     },
 
     "cache": {
         "enable": false,
-        "deltas": true
+        "deltas": "${build.id}/deltas"
     },
 
     "appCache": {
@@ -138,13 +145,45 @@
         }
     ],
 
+    "extras": [
+        "icon.png"
+    ],
     "archivePath": "../../archive/${app.name}/${build.id}",
 
-    "slicer": null,
+    "classic": {
+        "slicer": null,
+        "sass": {
+            "generated": {
+                "var": "classic/sass/save.scss",
+                "src": "classic/sass/save"
+            }
+        }
+    },
+
+    "modern": {
+        "slicer": null,
+        "sass": {
+            "generated": {
+                "var": "modern/sass/save.scss",
+                "src": "modern/sass/save"
+            }
+        }
+    },
+
+    "builds": {
+        "classic": {
+            "toolkit": "classic",
+            "theme": "theme-neptune"
+        },
+
+        "modern": {
+            "toolkit": "modern",
+            "theme": "theme-material"
+        }
+    },
 
     "ignore": [
         "(^|/)CVS(/?$|/.*?$)"
     ],
-
-    "id": "8f131145-dc98-447a-8ea9-416fe63a14be"
+    "id": "3bb9ed49-e907-46f8-842a-5503c3d68d83"
 }

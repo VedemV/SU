@@ -3,20 +3,19 @@
     "title": "Examples",
     "items": [
       {
-        "name": "material-icons",
-        "title": "Material Icons",
-        "description": "Material Icons viewer",
-        "url": "materialicons/index.html",
-        "icon": "materialicons/icon.png",
+        "name": "fonticonsview",
+        "title": "Font Icons View",
+        "description": "Font Icons View",
+        "url": "FontIconsView/index.html",
+        "icon": "FontIconsView/icon.png",
         "status": "new"
       },
       {
         "name": "wsecho",
         "title": "WebSocket Echo",
-        "description": "Material Icons viewer",
+        "description": "WebSocket examination",
         "url": "WSEcho/index.html",
-        "icon": "WSEcho/feeds.gif",
-        "status": "new"
+        "icon": "WSEcho/feeds.gif"
       }
     ]
   }

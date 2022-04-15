@@ -5,7 +5,7 @@
     "apps": [
         "su/examples/pulse",
         "su/examples/search",
-        "su/examples/materialicons",
+        "su/examples/fonticonsview",
         "su/examples/wsecho"
     ],
 
