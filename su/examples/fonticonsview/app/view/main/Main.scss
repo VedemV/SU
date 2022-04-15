@@ -1,0 +1,63 @@
+
+.app-main-tabbar {
+
+    &.x-tab-bar, &.x-tabbar {
+        background-color: #fefefe;
+    }
+
+    .x-tab-default {
+        border-color: #add2ed;
+        background-color: #add2ed;
+
+        .x-tab-inner-default {
+            color: #157fcc;
+        }
+
+    }
+
+    .x-tab.x-tab-active.x-tab-default {
+        border-color: #4c9dd8;
+        background-color: #4c9dd8;
+    
+        .x-tab-inner-default {
+            color: #fff;
+        }
+    }
+
+    .x-tab-bar-strip-default {
+        background-color: #4c9dd8;
+    }
+
+    .x-tab {
+        .x-text-el {
+            text-transform: none;
+        }
+
+        .x-active-indicator-el {
+            display: block;
+            height: 4px;
+            background-color: #fefefe;
+            right: 1px;
+            left: -1px;
+        }
+
+        .x-inner-el {
+            background-color: #add2ed;
+            border-radius: 4px;
+            margin-right: 2px;
+            padding: 10px 6px;
+        }
+
+        &.x-active {
+            .x-active-indicator-el {
+                background-color: #ffe0b2;
+            }
+
+            .x-inner-el {
+                background-color: #4c9dd8;
+            }
+        }
+
+    }
+
+}

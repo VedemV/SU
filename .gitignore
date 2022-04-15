@@ -15,10 +15,8 @@ jsduck.bat
 bootstrap.css
 bootstrap.js
 package-lock.json
-/su/examples/material-icons/classic.json
-/su/examples/material-icons/classic.jsonp
-/su/examples/material-icons/modern.json
-/su/examples/material-icons/modern.jsonp
+/su/examples/**/classic.json*
+/su/examples/**/modern.json*
 /docs/examples
 /su/version.properties
 /examples

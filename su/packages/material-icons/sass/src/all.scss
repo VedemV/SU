@@ -1,10 +1,131 @@
-// All rule-generating imports go here vs in etc/all.scss so that they will
-// cascade after the framework rules. 
-@import "../etc/all.scss";
 
-// The "x-mi" class should be used in Ext JS applications instead
-// of "mi".  The "material-icons" class sets some properties that may collide
-// mith theme properties, whereas "x-mi" sets only the font-family.
-.x-mi:before {
+@font-face {
+    font-family: '#{$mi-font-family}';
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$mi-path}/#{$mi-font-family}.eot');
+    /* For IE6-8 */
+    src: local('#{$mi-font-family}'),
+    url('#{$mi-path}/#{$mi-font-family}.woff2') format('woff2'),
+    url('#{$mi-path}/#{$mi-font-family}.woff') format('woff'),
+    url('#{$mi-path}/#{$mi-font-family}.ttf') format('truetype'),
+    url('#{$mi-path}/#{$mi-font-family}.svg#weather_iconsregular') format('svg');
+}
+
+.#{$mi-css-prefix} {
+    display: inline-block;
+    font: normal normal normal 14px/1 '#{$mi-font-family}';
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.x-#{$mi-css-prefix}:before {
     font-family: #{$mi-font-family} !important;
+}
+
+@each $name, $glyph in $mi-icons {
+    .#{$mi-css-prefix}-#{$name}:before {
+        content: $glyph;
+    }
+}
+
+.#{$mi-util-prefix}-inverse {
+    color: #ffffff;
+}
+
+.#{$mi-util-prefix}-rotate-90 { @include mi-icon-rotate(90deg, 1); }
+.#{$mi-util-prefix}-rotate-180 { @include mi-icon-rotate(180deg, 2); }
+.#{$mi-util-prefix}-rotate-270 { @include mi-icon-rotate(270deg, 3); }
+
+.#{$mi-util-prefix}-flip-horizontal { @include mi-icon-flip(-1, 1, 0); }
+.#{$mi-util-prefix}-flip-vertical { @include mi-icon-flip(1, -1, 2); }
+
+.#{$mi-util-prefix}-spin { @include mi-spin('spin'); }
+.#{$mi-util-prefix}-spin-reverse { @include mi-spin('spin-reverse'); }
+
+.#{$mi-util-prefix}-2x { @include mi-size(2em); }
+.#{$mi-util-prefix}-3x { @include mi-size(3em); }
+.#{$mi-util-prefix}-4x { @include mi-size(4em); }
+.#{$mi-util-prefix}-5x { @include mi-size(5em); }
+
+.#{$mi-util-prefix}-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+
+.#{$mi-util-prefix}-ul {
+    padding-left: 0;
+    margin-left: 2.14285714em;
+    list-style-type: none;
+
+    &>li {
+        position: relative;
+    }
+}
+
+.#{$mi-util-prefix}-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: 0.14285714em;
+    text-align: center;
+    
+    &.#{$mi-util-prefix}-lg {
+        left: -1.85714286em;
+    }
+}
+
+.#{$mi-util-prefix}-lg {
+    @include mi-size(5em);
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+
+.#{$mi-util-prefix}-stack {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+}
+
+.#{$mi-util-prefix}-stack-1x,
+.#{$mi-util-prefix}-stack-2x {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.#{$mi-util-prefix}-stack-1x {
+    line-height: inherit;
+}
+
+.#{$mi-util-prefix}-stack-2x {
+    font-size: 2em;
+}
+
+.#{$mi-util-prefix}-border {
+    padding: .1em .25em;
+    border: solid 0.1em #9e9e9e;
+    border-radius: 2px;
+}
+
+.#{$mi-util-prefix}-border-circle {
+    padding: .1em .25em;
+    border: solid 0.1em #9e9e9e;
+    border-radius: 50%;
+}
+
+.#{$mi-css-prefix}.pull-left {
+    float: left;
+    margin-right: .15em;
+}
+
+.#{$mi-css-prefix}.pull-right {
+    float: right;
+    margin-left: .15em;
 }

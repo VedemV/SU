@@ -3,11 +3,11 @@
     "title": "Examples",
     "items": [
       {
-        "name": "material-icons",
-        "title": "Material Icons",
-        "description": "Material Icons Viewer",
-        "url": "materialicons/index.html",
-        "icon": "materialicons/icon.png",
+        "name": "fonticonsview",
+        "title": "Font Icons View",
+        "description": "Font Icons View",
+        "url": "FontIconsView/index.html",
+        "icon": "FontIconsView/icon.png",
         "device": "tablet",
         "status": "new"
       },
