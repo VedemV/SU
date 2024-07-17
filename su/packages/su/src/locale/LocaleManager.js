@@ -161,10 +161,8 @@ Ext.define('SU.locale.LocaleManager', {
 
     requires: [
         //'SU.LocalStorageCookie',
-        'SU.locale.LocalePlugin',
         'SU.locale.Persistence',
-        'SU.locale.LocaleDelegate',
-        'SU.locale.store.LocalesStore'
+        'SU.locale.LocaleDelegate'
     ],
 
     /**

@@ -16,8 +16,7 @@
         "title": "WebSocket Echo",
         "description": "WebSocket examination",
         "url": "WSEcho/index.html",
-        "icon": "WSEcho/feeds.gif",
-        "status": "new"
+        "icon": "WSEcho/websocket.jpeg"
       }
     ]
   }

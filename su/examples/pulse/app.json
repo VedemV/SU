@@ -112,7 +112,8 @@
         },
         "resources": {
             "path": "resources",
-            "shared": "../resources"
+            "shared": "../resources",
+            "accests": "mylib/accests"
         }
     },
 
@@ -132,6 +133,10 @@
     },
 
     "resources": [
+        {
+            "path": "lib",
+            "output": "accests"
+        },
         {
             "path": "resources",
             "output": "shared"

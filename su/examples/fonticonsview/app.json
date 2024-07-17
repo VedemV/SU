@@ -148,6 +148,7 @@
     "extras": [
         "icon.png"
     ],
+    
     "archivePath": "../../archive/${app.name}/${build.id}",
 
     "classic": {

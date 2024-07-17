@@ -1,31 +1,50 @@
 Ext.define('WSEcho.view.Main', {
     extend: 'Ext.panel.Panel',
-
-    requires: [
-        'SU.WebSocket',
-        'Ext.toolbar.TextItem',
-        'Ext.form.field.Text',
-        'SU.LangSelect',
-        'SU.locale.LocalePlugin'
-    ],
-
     xtype: 'app-main',
 
+    requires: [
+        'Ext.button.Button',
+        'Ext.container.Container',
+        'Ext.form.field.Text',
+        'Ext.form.field.TextArea',
+        'Ext.layout.container.HBox',
+        'SU.LangSelect',
+        'SU.locale.LocalePlugin',
+        'WSEcho.controller.Main'
+    ],
+
+    controller: 'main',
+    scrollable: true,
+    plugins: [{ ptype: 'localization', method: 'setTitle', key: 'mainTitle' }],
     titleDefault: 'WebSocket Echo Test',
 
-    autoScroll: true,
-    //tools:[{
-    //       xtype: 'languagefield'
-    //}],
+    tools: [
+        {
+            xtype: 'languagefield'
+        }
+    ],
+
     dockedItems: [
         {
             xtype: 'toolbar',
             dock: 'top',
             items: [
                 {
+                    action: 'connect',
+                    scale: 'large',
+                    iconCls: 'x-mi mi-hc-2x mi-refresh',
+                    tooltip: 'Connect'
+                },
+                {
+                    action: 'disconnect',
+                    scale: 'large',
+                    iconCls: 'x-mi mi-hc-2x mi-close',
+                    tooltip: 'Disconnect'
+                },
+                {
                     action: 'url',
                     xtype: 'textfield',
-                    width: 200,
+                    flex: 1,
                     emptyText: 'ws://echo.websocket.org/',
                     value: 'ws://echo.websocket.org/'
                 },
@@ -37,61 +56,47 @@ Ext.define('WSEcho.view.Main', {
                     action: 'disconnect',
                     text: 'Disconnect',
                     disabled: true
-                },
-                {
-                    xtype: 'tbfill'
-                },
-                //{
-                //    action: 'text',
-                //    xtype: 'textfield',
-                //    width: 200,
-                //    disabled: true
-                //},
-                //{
-                //    action: 'send',
-                //    text: 'Send',
-                //    disabled: true
-                //}
+                }
             ]
         },
-        {
-            xtype: 'toolbar',
-            dock: 'bottom',
-            items: [{
-                xtype: 'tbtext', text: '&#160;'
-            }]
-        },
+        // {
+        //     xtype: 'toolbar',
+        //     dock: 'bottom',
+        //     items: [
+        //         {
+        //             xtype: 'tbtext',
+        //             html: '&#160;'
+        //         }
+        //     ]
+        // },
         {
             xtype: 'container',
             dock: 'bottom',
             padding: 10,
             layout: {
                 type: 'hbox',
-                align: 'center',
+                align: 'end',
                 pack: 'end'
             },
             items: [
                 {
                     action: 'text',
                     xtype: 'textareafield',
-                    height: 250,
-                    //margin: 10,
-                    //grow: true,
-                    flex: 1,
-                    disabled: true
+                    maxHeight: 250,
+                    grow: true,
+                    flex: 1
+                    //disabled: true
                 },
                 {
                     xtype: 'button',
                     action: 'send',
                     text: 'Send',
-                    margin: 10,
+                    margin: 10
                     //widih: 150
-                    disabled: true
+                    //disabled: true
                 }
             ]
-        
         }
-
     ],
     //plugins: [
     //	{ ptype: 'localization', method: 'updateTitle' }
@@ -107,10 +112,6 @@ Ext.define('WSEcho.view.Main', {
             ws = WSEcho.getApplication().getController('Main').getWebSocket(),
             state = !!ws && ws.getReadyState(),
             url = !!ws && ws.getUrl();
-        me.setTitle(me.titleDefault + (state === 2 ? (' (' + url + ')') : ''));
+        me.setTitle(me.titleDefault + (state === 2 ? ' (' + url + ')' : ''));
     }
-
-
-
-
 });

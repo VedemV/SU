@@ -6,81 +6,81 @@
 Ext.define('WSEcho.Application', {
     extend: 'Ext.app.Application',
 
-    requires: [
-		//'Ext.plugin.Viewport',
-		'SU.storage.LocalStorageCookie',
-		'WSEcho.view.Viewport',
-		'WSEcho.controller.Main',
-		'SU.locale.LocaleManager'
-    ],
+    requires: ['SU.WebSocket', 'SU.locale.LocaleManager', 'SU.storage.LocalStorageCookie'],
 
     name: 'WSEcho',
     quickTips: true,
 
-	views: [
-		//'WSEcho.view.Viewport'
-	],
+    stores: ['Locales'],
+    // controllers: ['Main'],
 
-	controllers: [
-		'Main'
-	],
+    init: function () {
+        var me = this;
+        Ext.Cookie.setProxyId(me.getName() + '.cookies');
+        this.initLocales();
+    },
 
-	init: function(){
-		var me = this;
-		// <debug>
-		console.log('WSEcho.application.init');
-		// </debug>
-		Ext.Cookie.setProxyId(me.getName()+'.cookies');
-		this.initLocales();
-	},
+    launch: function () {
+        // <debug>
+        console.log('WSEcho.controller.Main.onLaunch');
+        // </debug>
+        var me = this,
+            ws = me.getWebSocket();
+        // ws.on({
+        //     changestate: me.wsHandlerChangeState,
+        //     beforeconnect: me.wsHandlerBeforeConnect,
+        //     connect: me.wsHandlerConnect,
+        //     afterconnect: me.wsHandlerAfterConnect,
+        //     beforedisconnect: me.wsHandlerBeforeDisconnect,
+        //     disconnect: me.wsHandlerDisconnect,
+        //     send: me.wsHandlerSend,
+        //     message: me.wsHandlerMessage,
+        //     exception: me.wsHandlerException,
+        //     scope: me
+        // });
+    },
 
-	launch: function(){
-		// <debug>
-		console.log('WSEcho.application.launch');
-		// </debug>
-		//this.setMainView('Main');
-	},
+    getWebSocket: function () {
+        var me = this;
+        if (!me.ws) {
+            me.ws = new SU.WebSocket({
+                //url: 'ws://echo.websocket.org/'
+            });
+        }
+        return me.ws;
+    },
 
-	initLocales: function () {
-		var me = this,
-			lm = SU.locale.LocaleManager,
-			//lp = SU.locale.Persistence,
-			locale,
-			locales = Ext.create('store.locales', {
-				data: [
-					{ id: 'en', label: 'English', url: 'resources/locale/locale-en.js', propertiesClass: me.getName() + '.en.Languages' },
-					{ id: 'es', label: 'Spanish', url: 'resources/locale/locale-es.js', propertiesClass: me.getName() + '.en.Global' },
-					{ id: 'ru', label: 'Русский', url: 'resources/locale/locale-ru.js', propertiesClass: me.getName() + '.ru.Languages' }
-				]
-			});
-		// <debug>
-		console.log('WSEcho.application.initLocales');
-		// </debug>
-		Ext.Language.mode = 'dinamic';
-		lm.setLocales(locales);
-		lm.on({
-			initialized: {
-				fn: me.doInitLocales,
-				single: true,
-				scope: me
-			}
-		});
-		// Определение текущей локали
-		locale = lm.getPersistedLocale();
-		lm.setLocale(locale);
-	},
+    initLocales: function () {
+        var me = this,
+            lm = SU.locale.LocaleManager,
+            locale;
 
-	doInitLocales: function () {
-		this.setMainView('Main');
-	},
+        Ext.Language.mode = 'dinamic';
+        lm.setLocales(this.getStore('localesStore'));
+
+        // Запустим приложение после инициализации LocaleManager
+        lm.on({
+            initialized: {
+                fn: me.doInitLocales,
+                single: true,
+                scope: me
+            }
+        });
+
+        // Определение текущей локали
+        locale = lm.getPersistedLocale();
+        lm.setLocale(locale);
+    },
+
+    doInitLocales: function () {
+        this.setMainView('Main');
+    },
 
     onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
+        Ext.Msg.confirm('Application Update', 'This application has an update, reload?', function (choice) {
+            if (choice === 'yes') {
+                window.location.reload();
             }
-        );
+        });
     }
 });

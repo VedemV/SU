@@ -484,12 +484,12 @@ Ext.define('SU.locale.ru.window.MessageBox', {
         no: 'Нет'
     }
 });
-
 if( !Ext.ClassManager.classes['WSEcho.ru.Languages'] ){
 	Ext.define('WSEcho.ru.Languages', {
 		messages:{
 			closeConfirm: 'Закрыть соединение?'
-		}
+		},
+		mainTitle: 'Тест WebSocket Echo'
 	});
 }
 

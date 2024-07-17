@@ -487,11 +487,12 @@ Ext.define('SU.locale.en.window.MessageBox', {
 });
 
 if( !Ext.ClassManager.classes['WSEcho.en.Languages'] ){
-	Ext.define('WSEcho.en.Languages', {
-		messages:{
-			closeConfirm: 'Close a connection?'
-		}
-	});
+    Ext.define('WSEcho.en.Languages', {
+        messages:{
+            closeConfirm: 'Close a connection?'
+        },
+        mainTitle: 'WebSocket Echo Test'
+    });
 }
 
 
@@ -499,5 +500,3 @@ Ext.define('WSEcho.en.view.Main', {
     override: 'WSEcho.view.Main',
     titleDefault: 'WebSocket Echo Test'
 });
-
-

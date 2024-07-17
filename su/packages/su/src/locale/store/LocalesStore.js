@@ -5,7 +5,7 @@ Ext.define('SU.locale.store.LocalesStore', {
     extend: 'Ext.data.Store',
     alias: 'store.locales',
 
-    requires: ['Ext.data.reader.Json', 'SU.locale.model.LocaleModel'],
+    requires: ['SU.locale.model.LocaleModel'],
 
     config: {
         //		storeId: 'localesStore',

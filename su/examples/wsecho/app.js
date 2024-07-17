@@ -8,12 +8,6 @@ Ext.application({
     name: 'WSEcho',
     autoCreateViewport: false,
 
-    requires: [
-        // This will automatically load all classes in the WSEcho namespace
-        // so that application classes do not need to require each other.
-        //'WSEcho.*'
-    ],
+    requires: ['Ext.plugin.Viewport']
 
-    // The name of the initial view to create.
-    //mainView: 'WSEcho.view.main.Main'
 });

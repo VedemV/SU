@@ -8,7 +8,8 @@
     "indexHtmlPath": "index.html",
 
     "requires": [
-        "font-awesome",
+//        "font-awesome",
+        "material-icons",
         "su"
     ],
     
@@ -56,9 +57,6 @@
     },
 
     "js": [
-        {
-            "path": "${framework.dir}/build/ext-all-rtl-debug.js"
-        },
         {
             "path": "app.js",
             "bundle": true
@@ -112,56 +110,18 @@
         "css": "bootstrap.css"
     },
 
-    /**
-     * Controls the output directory for build resources.  May be set with
-     * either a string:
-     *
-     *      "${workspace.build.dir}/${build.environment}/${app.name}"
-     *
-     * or an object containing values for various types of build artifacts:
-     *
-     *      {
-     *          "base": "${workspace.build.dir}/${build.environment}/${app.name}",
-     *          "page": {
-     *              "path": "../index.html",
-     *              "enable": false
-     *          },
-     *          "css": "${app.output.resources}/${app.name}-all.css",
-     *          "js": {
-     *              "path": "app.js",
-     *              // This setting constrols the output language level.  Set to 'ES6' to 
-     *              // disable the transpiler
-     *              "version": "ES5"
-     *          },
-     *          "microloader": {
-     *              "path": "microloader.js",
-     *              "embed": true,
-     *              "enable": true
-     *          },
-     *          "manifest": {
-     *              "path": "app.json",
-     *              "embed": false,
-     *              "enable": "${app.output.microloader.enable}"
-     *          },
-     *          "resources": "resources",
-     *          "slicer": {
-     *              "path": "${app.output.resources}/images",
-     *              "enable": false
-     *          },
-     *          // Setting the "enable" property of this object to a Truthy value will cause a Application Cache
-     *          // manifest file to be generated based on this files appCache object. This file will then be injected
-     *          // into the index.html file of the built application
-     *          "appCache":{
-     *              "enable": false"
-     *          }
-     *      }
-     *
-     */
-
     "output": {
         "base": "${workspace.dir}/examples/${app.name}",
+        "page": "index.html",
+        // "manifest": "${build.id}.json",
+        // "js": "${build.id}/app.js",
+        // "css": "${app.output.resources.path}/style.css",
         "appCache": {
             "enable": false
+        },
+        "resources": {
+            "path": "resources",
+            "shared": "../resources"
         }
     },
 
@@ -181,13 +141,21 @@
     },
 
     "resources": [
+        //{
+        //    "path": "lib",
+        //    "output": "lib"
+        //},
         {
             "path": "resources",
             "output": "shared"
         }
     ],
 
-    "archivePath": "archive",
+    "extras": [
+        "websocket.jpeg"
+    ],
+
+    "archivePath": "../../archive/${app.name}",
 
     "slicer": {
         "js": [
